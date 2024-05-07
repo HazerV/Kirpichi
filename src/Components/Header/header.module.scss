@@ -29,15 +29,21 @@
   padding-bottom: 16px;
   align-self: center;
   justify-content: center;
+
 }
 .underlogo_text {
   align-self: center;
-  //padding-bottom: 16px;
 }
 
 .undertext_buttons {
   display: flex;
   justify-content: flex-start;
+  justify-self: center;
+  @media (min-width: 660px) {
+    article {
+      justify-content: center;
+    }
+  }
   flex-direction: row;
   gap: 10px;
   width: 100%;
