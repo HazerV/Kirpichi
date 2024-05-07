@@ -1,0 +1,45 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  padding-bottom: 12px;
+}
+
+.buttons_block {
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  padding-bottom: 16px;
+}
+
+.header_buttons {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  width: 100%;
+}
+
+.logo {
+  align-self: center;
+  max-width: 100%;
+  height: auto;
+  margin-bottom: 12px;
+}
+.underlogo_block{
+  padding-bottom: 16px;
+  align-self: center;
+  justify-content: center;
+}
+
+.underlogo_text {
+  align-self: center;
+  //padding-bottom: 16px;
+}
+
+.undertext_buttons {
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: row;
+  gap: 10px;
+  width: 100%;
+}
