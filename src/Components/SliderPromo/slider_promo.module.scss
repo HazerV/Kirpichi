@@ -8,8 +8,8 @@
 .image_block {
   width: 100%;
   aspect-ratio: 1/1;
-  @media (min-width: 660px) {
-    max-width: 680px;
+  @media (min-width: 580px) {
+    max-width: 580px;
   }
 }
 .image {

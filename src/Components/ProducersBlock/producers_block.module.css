@@ -8,7 +8,6 @@
 
 .text_block {
   font-size: 16px;
-  font-family: 'Gilroy-SemiBold';
   display: flex;
   justify-content: space-between;
   width: 100%;
@@ -21,7 +20,7 @@
   display: flex;
 }
 
-.block_stories {
+.block_scroll {
   display: flex;
   scroll-snap-type: initial;
   gap: 10px;
@@ -40,9 +39,13 @@
   justify-content: center;
   align-items: center;
   display: flex;
+  position: fixed;
+  right: 0;
 }
 
 .left_text {
   position: fixed;
   left: 0;
 }
+
+/*# sourceMappingURL=producers_block.module.css.map */

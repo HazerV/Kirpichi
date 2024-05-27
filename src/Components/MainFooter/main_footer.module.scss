@@ -1,0 +1,31 @@
+.container {
+  padding-top: 16px;
+  padding-bottom: 16px;
+  border-width: 2px;
+  border-top: 2px solid #f5f5f5;
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  background-color: white;
+  align-items: center;
+}
+
+.buttons_top {
+  gap: 12px;
+  display: flex;
+  flex-direction: row;
+  //padding-top: 16px;
+  padding-bottom: 28px;
+}
+
+.buttons_underline {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  gap: 12px;
+  padding-bottom: 28px;
+}
+
+.text_license {
+  padding-bottom: 84px;
+}

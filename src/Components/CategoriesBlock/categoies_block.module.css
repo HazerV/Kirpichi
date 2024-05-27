@@ -1,0 +1,24 @@
+.container {
+  align-items: center;
+  justify-content: center;
+}
+
+p {
+  padding-bottom: 12px;
+  font-family: "Gilroy-SemiBold";
+}
+
+.align_images {
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  display: flex;
+  gap: 12px;
+}
+
+.image {
+  width: 180px;
+  height: 180px;
+}
+
+/*# sourceMappingURL=categoies_block.module.css.map */

@@ -1,12 +1,15 @@
 import styles from './default_button.module.scss'
-
-function DefaultButton ({text}) {
+import {Link} from "react-router-dom";
+function DefaultButton({text, href}) {
     return (
-        <button className={styles.container}>
-            <p className={styles.text_inside}>
-                {text}
-            </p>
-        </button>
+        <Link to={`${href}`}>
+            <button className={styles.container}>
+                <p className={styles.text_inside}>
+                    {text}
+                </p>
+            </button>
+        </Link>
     )
 }
+
 export default DefaultButton

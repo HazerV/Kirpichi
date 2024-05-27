@@ -1,0 +1,39 @@
+
+.container {
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  display: block;
+  width: 180px;
+}
+
+.image {
+  width: 180px;
+  height: 180px;
+}
+
+p {
+  //font-family: Gilroy;
+  font-size: 12px;
+  line-height: 14px;
+}
+
+.name {
+  font-size: 16px;
+  font-family: 'Gilroy-Medium';
+  padding-top: 6px;
+}
+
+.description {
+  //font-family: Gilroy;
+  font-size: 12px;
+  line-height: 14px;
+  padding-top: 8px;
+}
+
+.price {
+  font-family: 'Gilroy-Medium';
+  font-size: 16px;
+  padding-top: 8px;
+  padding-bottom: 20px;
+}

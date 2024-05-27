@@ -7,8 +7,6 @@
 }
 
 .text_block {
-  font-size: 16px;
-  font-family: 'Gilroy-SemiBold';
   display: flex;
   justify-content: space-between;
   width: 100%;
@@ -46,3 +44,5 @@
   position: fixed;
   left: 0;
 }
+
+/*# sourceMappingURL=histories_block.module.css.map */

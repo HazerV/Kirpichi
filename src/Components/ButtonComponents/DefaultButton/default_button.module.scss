@@ -4,20 +4,16 @@
   padding: 10px;
   border-width: 0;
   text-align: center;
-  display: flex;
   align-items: center;
 }
 
 .locate_inside {
-  display: flex;
   flex-direction: row;
-  align-items: center;
+  align-self: center;
 }
 
 .text_inside {
-  font-family: Gilroy;
+  font-family: 'Gilroy-Regular';
   font-size: 14px;
-  line-height: 16px;
   color: black;
-  margin-left: 5px;
 }

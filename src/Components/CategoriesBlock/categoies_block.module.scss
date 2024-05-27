@@ -1,0 +1,28 @@
+.container {
+  align-items: center;
+  justify-content: center;
+  padding-bottom: 34px;
+}
+
+.text {
+  padding-bottom: 12px;
+  font-size: 16px;
+  font-family: 'Gilroy-SemiBold';
+}
+
+.align_images {
+  justify-content: space-between;
+  align-items: center;
+  display: grid;
+  grid-gap: 12px;
+  grid-template-columns: repeat(2,minmax(140px,2fr));
+  @media screen and (min-width: 580px) {
+    grid-template-columns: repeat(3,minmax(180px,1fr)) ;
+  }
+}
+
+.image {
+  transition: transform .2s;
+  height: 100%;
+  width: 100%;
+}

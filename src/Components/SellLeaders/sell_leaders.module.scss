@@ -1,0 +1,38 @@
+.container {
+
+}
+
+.text {
+  font-family: 'Gilroy-SemiBold';
+  font-size: 16px;
+  line-height: 18px;
+}
+
+.text_block {
+  justify-content: space-between;
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+}
+
+.all {
+  font-size: 14px;
+}
+
+.all_text {
+  font-size: 16px;
+  padding-bottom: 14px;
+  flex-direction: row;
+  display: flex;
+}
+
+.align_items {
+  justify-content: space-between;
+  align-items: center;
+  display: grid;
+  grid-gap: 12px;
+  grid-template-columns: repeat(2,minmax(140px,2fr));
+  @media screen and (min-width: 580px) {
+    grid-template-columns: repeat(3,minmax(180px,1fr)) ;
+  }
+}
