@@ -1,7 +1,7 @@
 import Geo from '../../../assets/icons/headerIcons/Geo.svg'
 import Lupa from '../../../assets/icons/headerIcons/Lupa.svg'
 import styles from './header_buttons.module.scss'
-function SearchButton() {
+function GeoButton() {
     return (
         <button className={styles.container}>
             <div className={styles.locate_inside}>
@@ -14,7 +14,7 @@ function SearchButton() {
     )
 }
 
-function GeoButton() {
+function SearchButton() {
     return (
         <button className={styles.container}>
             <div className={styles.locate_inside}>

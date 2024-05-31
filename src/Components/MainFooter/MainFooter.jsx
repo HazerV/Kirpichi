@@ -11,7 +11,7 @@ function MainFooter () {
                 <DefaultButton text={'О нас'} />
             </div>
             <div className={styles.buttons_underline}>
-                <UnderLineText text={'Контакты'} />
+                <UnderLineText text={'Контакты'} href={'/contacts'} />
                 <UnderLineText text={'Оферта'} />
                 <UnderLineText text={'Пользовательское соглашение'} />
                 <UnderLineText text={'Политика конфиденциальности'} />

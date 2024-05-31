@@ -9,6 +9,7 @@
 }
 
 .text_block {
+  padding-bottom: 14px;
   justify-content: space-between;
   align-items: center;
   display: flex;
@@ -20,8 +21,8 @@
 }
 
 .all_text {
-  font-size: 16px;
-  padding-bottom: 14px;
+  align-items: center;
+  gap: 7px;
   flex-direction: row;
   display: flex;
 }

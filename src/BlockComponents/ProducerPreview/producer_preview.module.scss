@@ -1,0 +1,19 @@
+.container {
+  padding: 12px;
+  width: 180px;
+  //height: 164px;
+  background-color: #EBE7E3;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  text-align: center;
+  flex-direction: column;
+}
+
+.logo {
+  align-self: center;
+  justify-self: center;
+  width: 158px;
+  height: 108px;
+}
+

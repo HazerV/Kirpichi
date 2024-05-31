@@ -1,0 +1,15 @@
+.container {
+  align-items: flex-start;
+  justify-content: center;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.input {
+  flex: 1;
+  border-radius: 3px;
+  border-width: 2px;
+  display: flex;
+  height: 49px;
+  width: 372px
+}

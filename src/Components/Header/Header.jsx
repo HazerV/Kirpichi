@@ -2,15 +2,14 @@ import styles from './header.module.scss'
 import {GeoButton, SearchButton} from "../ButtonComponents/HeaderButtons/HeaderButttons.jsx";
 import Logo from "../../assets/imgs/Logo.svg";
 import DefaultButton from "../ButtonComponents/DefaultButton/DefaultButton.jsx";
-import {Link} from "react-router-dom";
 
 function Header() {
     return (
         <header className={styles.container}>
             <search className={styles.buttons_block}>
                 <div className={styles.header_buttons}>
-                    <SearchButton/>
                     <GeoButton/>
+                    <SearchButton/>
                 </div>
             </search>
             <img className={styles.logo} src={Logo}/>
@@ -23,9 +22,9 @@ function Header() {
                 </p>
             </div>
             <div className={styles.undertext_buttons}>
-                <DefaultButton text={'Контакты'} href={'/categories'}/>
+                <DefaultButton text={'Контакты'} href={'/contacts'}/>
                 <DefaultButton text={'Доставка'}/>
-                <DefaultButton text={'Об оплате'}/>
+                <DefaultButton text={'О компании'}/>
             </div>
         </header>
     )
