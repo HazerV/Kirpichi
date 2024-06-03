@@ -1,5 +1,5 @@
-import Geo from '../../../assets/icons/headerIcons/Geo.svg'
-import Lupa from '../../../assets/icons/headerIcons/Lupa.svg'
+import Geo from '../../assets/icons/headerIcons/Geo.svg'
+import Lupa from '../../assets/icons/headerIcons/Lupa.svg'
 import styles from './header_buttons.module.scss'
 function GeoButton() {
     return (

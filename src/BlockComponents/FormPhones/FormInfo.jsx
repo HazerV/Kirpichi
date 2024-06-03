@@ -1,4 +1,4 @@
-import GoBackButton from "../../Components/ButtonComponents/GoBackButton/GoBackButton.jsx";
+import GoBackButton from "../../ButtonComponents/GoBackButton/GoBackButton.jsx";
 import styles from './formphones.module.scss'
 
 function FormInfo ({head_text, text_one, text_two, text_three}) {

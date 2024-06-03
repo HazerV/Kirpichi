@@ -1,4 +1,4 @@
-import GoBackSvg from '../../../assets/icons/GoBack.svg'
+import GoBackSvg from '../../assets/icons/GoBack.svg'
 import styles from './goback_button.module.scss'
 import {useNavigate} from "react-router-dom";
 function GoBackButton () {

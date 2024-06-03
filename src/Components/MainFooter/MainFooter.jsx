@@ -1,5 +1,7 @@
-import DefaultButton from "../ButtonComponents/DefaultButton/DefaultButton.jsx";
-import UnderLineText from "../ButtonComponents/UnderLineText/UnderLineText.jsx";
+// import DefaultButton from "../ButtonComponents/DefaultButton/DefaultButton.jsx";
+import DefaultButton from "../../ButtonComponents/DefaultButton/DefaultButton.jsx";
+import UnderLineText from "../../ButtonComponents/UnderLineText/UnderLineText.jsx";
+// import UnderLineText from "../ButtonComponents/UnderLineText/UnderLineText.jsx";
 import styles from './main_footer.module.scss'
 import Footer from "../Footer/Footer.jsx";
 function MainFooter () {

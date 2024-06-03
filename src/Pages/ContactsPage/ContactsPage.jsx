@@ -1,15 +1,9 @@
 import HeaderPage from "../../Components/HeaderPage/HeaderPage.jsx";
-import {GeoButton} from "../../Components/ButtonComponents/HeaderButtons/HeaderButttons.jsx";
+import {GeoButton} from "../../ButtonComponents/HeaderButtons/HeaderButttons.jsx";
 import FormInfo from "../../BlockComponents/FormPhones/FormInfo.jsx";
 import styles from './contacts_page.module.scss'
-import Footer from "../../Components/Footer/Footer.jsx";
-import SendRequest from "../../BlockComponents/SendRequest/SendRequest.jsx";
-import ContactsField from "../../BlockComponents/ContactsField/ContactsField.jsx";
-import InterestingGoods from "../../BlockComponents/InterestingGoods/InterestingGoods.jsx";
-import ProducerPreview from "../../BlockComponents/ProducerPreview/ProducerPreview.jsx";
-import WhatsAppButton from "../../Components/ButtonComponents/SocialNetworksButtons/WhatsAppButton.jsx";
-import TelegramButton from "../../Components/ButtonComponents/SocialNetworksButtons/TelegramButton.jsx";
-import AddToFavoriteButton from "../../Components/ButtonComponents/AddToFavoriteButton/AddToFavoriteButton.jsx";
+import WhatsAppButton from "../../ButtonComponents/SocialNetworksButtons/WhatsAppButton.jsx";
+import TelegramButton from "../../ButtonComponents/SocialNetworksButtons/TelegramButton.jsx";
 import MapField from "../../BlockComponents/Map/MapField.jsx";
 function ContactsPage() {
     return (

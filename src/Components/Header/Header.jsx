@@ -1,8 +1,7 @@
 import styles from './header.module.scss'
-import {GeoButton, SearchButton} from "../ButtonComponents/HeaderButtons/HeaderButttons.jsx";
+import {GeoButton, SearchButton} from "../../ButtonComponents/HeaderButtons/HeaderButttons.jsx";
 import Logo from "../../assets/imgs/Logo.svg";
-import DefaultButton from "../ButtonComponents/DefaultButton/DefaultButton.jsx";
-
+import DefaultButton from "../../ButtonComponents/DefaultButton/DefaultButton.jsx";
 function Header() {
     return (
         <header className={styles.container}>

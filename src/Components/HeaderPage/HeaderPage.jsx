@@ -1,6 +1,5 @@
 import styles from './header_page.module.scss'
-import GoBackButton from "../ButtonComponents/GoBackButton/GoBackButton.jsx";
-
+import GoBackButton from "../../ButtonComponents/GoBackButton/GoBackButton.jsx";
 function HeaderPage({text}) {
     return (
         <div className={styles.container}>
