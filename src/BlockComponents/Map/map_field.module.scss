@@ -1,7 +1,13 @@
 .container {
   display: flex;
   justify-content: flex-start;
-  align-items: center;
+  //align-items: center;
+  background-color: #EBE7E3;
+  flex-direction: column;
+  padding-left: 12px;
+  padding-right: 12px;
+  padding-bottom: 12px;
+  padding-top: 12px;
 }
 
 .head_text {
@@ -14,3 +20,16 @@
   padding-bottom: 12px;
   font-size: 12px;
 }
+
+.map {
+  border-radius: 13px;
+}
+
+.buttons {
+  padding-top: 12px;
+  gap: 12px;
+  display: flex;
+  flex-direction: row;
+}
+
+

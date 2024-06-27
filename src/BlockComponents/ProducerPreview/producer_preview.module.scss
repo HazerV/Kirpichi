@@ -1,19 +1,20 @@
 .container {
-  padding: 12px;
   width: 180px;
-  //height: 164px;
+  height: 164px;
+  gap: 8px;
   background-color: #EBE7E3;
   justify-content: center;
   align-items: center;
-  gap: 8px;
   text-align: center;
   flex-direction: column;
 }
 
 .logo {
+  padding-top: 12px;
+  width: 156px;
+  max-height: 108px;
   align-self: center;
   justify-self: center;
-  width: 158px;
-  height: 108px;
 }
+
 

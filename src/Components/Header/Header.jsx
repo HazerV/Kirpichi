@@ -22,8 +22,8 @@ function Header() {
             </div>
             <div className={styles.undertext_buttons}>
                 <DefaultButton text={'Контакты'} href={'/contacts'}/>
-                <DefaultButton text={'Доставка'}/>
-                <DefaultButton text={'О компании'}/>
+                <DefaultButton text={'Доставка'} href={'/delivery'}/>
+                <DefaultButton text={'О компании'} href={'/info'}/>
             </div>
         </header>
     )

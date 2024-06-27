@@ -1,6 +1,6 @@
-import styles from './delievery_page.module.scss'
+import styles from './delivery_page.module.scss'
 
-function DelieveryPage () {
+function DeliveryPage () {
     return (
         <div>
 
@@ -8,4 +8,4 @@ function DelieveryPage () {
     )
 }
 
-export default DelieveryPage
+export default DeliveryPage

@@ -1,4 +1,29 @@
 .container {
+  display: flex;
+  padding: 10px;
+  flex-direction: column;
+  //align-items: center;
+  justify-content: space-between;
+}
 
+.forms {
+  flex-wrap: wrap;
+  flex-direction: row;
+  display: flex;
+  gap: 12px;
+  padding-bottom: 12px;
+}
+
+.network_buttons {
+  display: flex;
+  flex-direction: row;
+  gap: 12px;
+  padding-bottom: 12px;
+  align-items: flex-end;
+}
+
+.footer {
+  align-self: center;
+  justify-self: center;
 }
 

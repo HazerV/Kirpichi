@@ -6,6 +6,11 @@
   padding-bottom: 32px;
 }
 
+.carousel {
+  //gap: 14px;
+  //display: flex;
+}
+
 .text_block {
   font-size: 16px;
   font-family: 'Gilroy-SemiBold';
@@ -38,8 +43,10 @@
 
 .text_all {
   justify-content: center;
+  text-decoration: none;
   align-items: center;
   display: flex;
+  color: black;
 }
 
 .left_text {

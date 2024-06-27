@@ -1,0 +1,22 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  padding-top: 32px;
+  padding-left: 10px;
+}
+
+.images_block {
+  display: flex;
+  gap: 12px;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin-bottom: 24px;
+}
+
+.image {
+
+}
+
+.mb_16 {
+  margin-bottom: 16px;
+}

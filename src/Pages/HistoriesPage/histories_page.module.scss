@@ -1,0 +1,27 @@
+.container {
+  display: flex;
+  padding-left: 10px;
+  flex-direction: column;
+}
+
+.images {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  gap: 12px;
+  padding-bottom: 8px;
+}
+
+.head_text {
+  font-family: 'Gilroy-SemiBold';
+  font-size: 14px;
+  padding-bottom: 8px;
+}
+
+.footer {
+  position: fixed;
+  bottom: 0;
+  display: flex;
+  width: 100%;
+  background-color: white;
+}

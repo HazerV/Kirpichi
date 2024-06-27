@@ -14,14 +14,14 @@ function FormInfo ({head_text, text_one, text_two, text_three}) {
             }
             {
                 text_one && (
-                    <p>
+                    <p style={{paddingBottom: 8}}>
                         {text_one}
                     </p>
                 )
             }
             {
                 text_two && (
-                    <p>
+                    <p style={{paddingBottom: 8}}>
                         {text_two}
                     </p>
                 )

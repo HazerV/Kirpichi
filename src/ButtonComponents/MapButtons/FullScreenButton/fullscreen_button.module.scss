@@ -1,0 +1,16 @@
+.container {
+  background-color: #EBE7E3;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  border-radius: 3px;
+  border-width: 0;
+  //height: 40px;
+  padding: 12px;
+  gap: 8px
+}
+
+.text {
+  font-size: 14px;
+}

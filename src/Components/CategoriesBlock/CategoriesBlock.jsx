@@ -1,6 +1,9 @@
 import styles from './categoies_block.module.scss'
 import ForCategories from '../../assets/imgs/ForCategory.png'
-function CategoriesBlock () {
+function CategoriesBlock ({text}) {
+
+
+
     return (
         <div className={styles.container}>
             <div>

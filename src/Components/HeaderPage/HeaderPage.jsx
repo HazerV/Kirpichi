@@ -7,6 +7,8 @@ function HeaderPage({text}) {
             <p className={styles.text}>
                 {text}
             </p>
+            <div className={styles.empty} />
+
         </div>
     )
 }

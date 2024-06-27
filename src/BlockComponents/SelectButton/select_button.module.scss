@@ -1,0 +1,34 @@
+.container {
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+  border-width: 0;
+}
+
+.unselected {
+  width: 24px;
+  height: 24px;
+  border-radius: 3px;
+  border-width: 2px;
+  border-color: #CCCCCC;
+  background-color: white;
+}
+
+.selected {
+  width: 24px;
+  height: 24px;
+}
+
+.text {
+  font-size: 14px;
+}
+
+.count_field {
+  background-color: white;
+  border-radius: 3px;
+  padding: 5px
+}
+
+.text_inside_field {
+  font-size: 14px;
+}

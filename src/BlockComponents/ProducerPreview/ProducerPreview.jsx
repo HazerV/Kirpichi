@@ -1,5 +1,6 @@
 import styles from './producer_preview.module.scss'
 import ExampleImg from '../../assets/imgs/ForCategory.png'
+
 function ProducerPreview ({image, text}) {
     image = ExampleImg
     text = 'Венезелинский кирпичный завод'
