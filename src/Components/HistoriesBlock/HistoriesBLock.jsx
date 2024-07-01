@@ -20,7 +20,7 @@ function HistoriesBLock ({text, href}) {
         },
         mobile: {
             breakpoint: { max: 464, min: 0 },
-            items: 2.5,
+            items: 2.6,
             partialVisibilityGutter: 30
         }
     };

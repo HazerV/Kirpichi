@@ -6,7 +6,7 @@ import MainFooter from "../../Components/MainFooter/MainFooter.jsx";
 function ProducersPage () {
     return (
         <div className={styles.container}>
-            <HeaderPage text={'Производители'} />
+            <HeaderPage text={'Производители'} search={false} />
             <div className={styles.block}>
                 <ProducerPreview text={'Вензелинский кирпичный завод'}/>
                 <ProducerPreview text={'Вензелинский кирпичный завод'}/>

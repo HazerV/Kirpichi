@@ -1,3 +1,22 @@
 .container {
+  padding-left: 10px;
+  align-items: center;
+}
 
+.block {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  padding-bottom: 12px;
+}
+
+.pad_bot {
+  padding: 12px;
+}
+
+.pad_bot16 {
+  padding-bottom: 16px;
 }

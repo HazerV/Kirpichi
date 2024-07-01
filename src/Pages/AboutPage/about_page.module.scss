@@ -1,7 +1,6 @@
 .container {
   display: flex;
   flex-direction: column;
-  padding-top: 32px;
   padding-left: 10px;
 }
 
@@ -14,7 +13,8 @@
 }
 
 .image {
-
+  width: 180px;
+  height: 246px;
 }
 
 .mb_16 {

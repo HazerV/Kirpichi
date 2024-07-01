@@ -1,0 +1,18 @@
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #89242B;
+  width: 90px;
+  border-width: 0;
+  padding: 10px;
+  border-radius: 3px;
+  gap: 6px
+}
+
+.text {
+  text-align: center;
+  font-size: 14px;
+  font-family: Gilroy-SemiBold;
+  color: white;
+}

@@ -8,10 +8,10 @@ function AboutPage() {
         <div className={styles.container}>
             <HeaderPage text={'Что мы делаем'}/>
             <div className={styles.images_block}>
-                <img src={Example}/>
-                <img src={Example}/>
-                <img src={Example}/>
-                <img src={Example}/>
+                <img className={styles.image} src={Example}/>
+                <img className={styles.image} src={Example}/>
+                <img className={styles.image} src={Example}/>
+                <img className={styles.image} src={Example}/>
             </div>
             <div style={{paddingBottom: 45}}>
                 <PaginationButtons />

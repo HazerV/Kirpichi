@@ -12,8 +12,8 @@ import DeliveryPage from "./Pages/DeliveryPage/DeliveryPage.jsx";
 import ErrorPage from "./Pages/ErrorPage/ErrorPage.jsx";
 import AboutPage from "./Pages/AboutPage/AboutPage.jsx";
 import ProducersPage from "./Pages/ProducersPage/ProducersPage.jsx";
+import ProductPage from "./Pages/ProductPage/ProductPage.jsx";
 import {PaginationContext, ButtonContext} from "./Context/PaginationContext.jsx";
-
 
 ReactDOM.createRoot(document.getElementById("root")).render(
     <React.StrictMode>
@@ -28,6 +28,8 @@ ReactDOM.createRoot(document.getElementById("root")).render(
                         <Route path='/delivery' element={<DeliveryPage/>}/>
                         <Route path='/about' element={<AboutPage/>}/>
                         <Route path='/producers' element={<ProducersPage/>}/>
+                        <Route path='/category' element={<CategoryPage/>} />
+                        <Route path='/product' element={<ProductPage/>} />
                     </Routes>
             </PaginationContext>
         </BrowserRouter>

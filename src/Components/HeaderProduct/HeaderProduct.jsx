@@ -1,24 +1,17 @@
-import styles from './header_page.module.scss'
+import styles from "../HeaderPage/header_page.module.scss";
 import GoBackButton from "../../ButtonComponents/GoBackButton/GoBackButton.jsx";
 import SearchHeader from "../../ButtonComponents/SearchHeader/SearchHeader.jsx";
-
-function HeaderPage({text, search}) {
-    // search = false
+import AddToFavoriteButton from "../../ButtonComponents/AddToFavoriteButton/AddToFavoriteButton.jsx";
+function HeaderProduct ({text, search}) {
     return (
         <div className={styles.container}>
             <GoBackButton/>
             <p className={styles.text}>
                 {text}
             </p>
-            {
-                search === false ? (
-                    <div className={styles.empty}/>
-                ) : (
-                    <SearchHeader/>
-                )
-            }
+            <AddToFavoriteButton />
         </div>
     )
 }
 
-export default HeaderPage
+export default HeaderProduct
