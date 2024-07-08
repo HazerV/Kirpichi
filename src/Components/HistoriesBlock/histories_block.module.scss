@@ -1,9 +1,10 @@
 .container {
   flex-direction: column;
-  align-self: flex-start;
   display: flex;
   overflow-x: scroll;
   padding-bottom: 32px;
+  max-width: 564px;
+
 }
 
 .text_block {
@@ -15,6 +16,19 @@
   padding-bottom: 6px;
 }
 
+.slider {
+  margin: 6px;
+  overflow: hidden;
+  //padding:2rem 0;
+}
+
+.image {
+  width: 132px;
+  height: 180px;
+  border-radius: 3px;
+}
+
+
 .text_inside {
   font-family: Gilroy-SemiBold;
   font-size: 16px;
@@ -23,18 +37,14 @@
 
 .block_stories {
   display: flex;
-  scroll-snap-type: initial;
-  gap: 10px;
+  //scroll-snap-type: initial;
+  //gap: 10px;
   align-self: center;
   width: 100%;
   overflow-x: auto;
 }
 
-.image {
-  width: 132px;
-  height: 180px;
-  border-radius: 3px;
-}
+
 
 .text_all {
   justify-content: center;

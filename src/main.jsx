@@ -13,6 +13,7 @@ import ErrorPage from "./Pages/ErrorPage/ErrorPage.jsx";
 import AboutPage from "./Pages/AboutPage/AboutPage.jsx";
 import ProducersPage from "./Pages/ProducersPage/ProducersPage.jsx";
 import ProductPage from "./Pages/ProductPage/ProductPage.jsx";
+import InterestingPage from "./Pages/InterestingPage/InterestingPage.jsx";
 import {PaginationContext, ButtonContext} from "./Context/PaginationContext.jsx";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
@@ -30,6 +31,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
                         <Route path='/producers' element={<ProducersPage/>}/>
                         <Route path='/category' element={<CategoryPage/>} />
                         <Route path='/product' element={<ProductPage/>} />
+                        <Route path='/interesing' element={<InterestingPage/>} />
                     </Routes>
             </PaginationContext>
         </BrowserRouter>

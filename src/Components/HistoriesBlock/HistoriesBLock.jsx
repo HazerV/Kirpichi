@@ -6,22 +6,25 @@ import 'react-multi-carousel/lib/styles.css'
 import {Link} from "react-router-dom";
 import ProducersBlock from "../ProducersBlock/ProducersBlock.jsx";
 import PaginationButtons from "../../ButtonComponents/PaginationButtons/PaginationButtons.jsx";
-function HistoriesBLock ({text, href}) {
+
+function HistoriesBLock({text, href}) {
+
     const responsive = {
         desktop: {
-            breakpoint: { max: 4000, min: 1024 },
-            items: 5,
-            partialVisibilityGutter: 20
+            breakpoint: {max: 3000, min: 721},
+            items: 4,
+        },
+        tablet_next: {
+            breakpoint: {max: 720, min: 550},
+            items: 4,
         },
         tablet: {
-            breakpoint: { max: 1024, min: 464 },
+            breakpoint: {max: 549, min: 450},
             items: 3,
-            partialVisibilityGutter: 30
         },
         mobile: {
-            breakpoint: { max: 464, min: 0 },
-            items: 2.6,
-            partialVisibilityGutter: 30
+            breakpoint: {max: 449, min: 320},
+            items: 2.7
         }
     };
 
@@ -41,22 +44,26 @@ function HistoriesBLock ({text, href}) {
                 </Link>
             </p>
             <Carousel
-                className={styles.carousel}
                 responsive={responsive}
                 infinite={true}
                 arrows={false}
             >
-                <div>
+                <Link to={'/histories'}>
+                    <div className={styles.slider}>
+                        <img src={ForStories} className={styles.image}/>
+                    </div>
+                </Link>
+
+                <div className={styles.slider}>
                     <img src={ForStories} className={styles.image}/>
                 </div>
-                <div>
+                <div className={styles.slider}>
                     <img src={ForStories} className={styles.image}/>
                 </div>
-                <div>
+                <div className={styles.slider}>
                     <img src={ForStories} className={styles.image}/>
                 </div>
             </Carousel>
-
         </div>
     )
 }

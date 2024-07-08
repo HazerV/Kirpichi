@@ -16,6 +16,7 @@
   justify-content: space-between;
   flex-direction: row;
   width: 100%;
+  max-width: 1040px;
 }
 
 .logo {
@@ -37,13 +38,13 @@
 .undertext_buttons {
   display: flex;
   justify-content: flex-start;
-  justify-self: center;
-  @media (min-width: 660px) {
-    article {
-      justify-content: center;
-    }
-  }
+  //justify-self: center;
+
   flex-direction: row;
   gap: 10px;
   width: 100%;
+  @media screen and (min-width: 580px) {
+    //align-self: center;
+    justify-content: center;
+  }
 }

@@ -2,6 +2,7 @@
   align-items: center;
   justify-content: center;
   padding-bottom: 34px;
+  max-width: 604px;
 }
 
 .text {
@@ -16,7 +17,7 @@
   display: grid;
   grid-gap: 12px;
   grid-template-columns: repeat(2,minmax(140px,2fr));
-  @media screen and (min-width: 580px) {
+  @media screen and (min-width: 604px) {
     grid-template-columns: repeat(3,minmax(180px,1fr)) ;
   }
 }

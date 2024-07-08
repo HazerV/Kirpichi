@@ -8,8 +8,11 @@ import TextInCategory from "../../BlockComponents/UnderCategories/TextInCategory
 import FilterButtonsField from "../../ButtonComponents/FilterButtons/FilterButtonsField.jsx";
 function CategoryPage () {
     return (
-        <div className={styles.container}>
-            <HeaderPage text={'Клинкерный кирпич'} search={true} />
+
+        <>
+            <div className={styles.container}>
+                <HeaderPage text={'Клинкерный кирпич'} search={true} />
+            </div>
             <div className={styles.pad_bot}>
                 <UnderCategories />
             </div>
@@ -33,7 +36,7 @@ function CategoryPage () {
                 <PaginationButtons />
             </div>
             <MainFooter />
-        </div>
+        </>
     )
 }
 export default CategoryPage
