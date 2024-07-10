@@ -1,0 +1,18 @@
+.container {
+  display: flex;
+  padding-left: 10px;
+  align-self: center;
+  justify-content: space-between;
+  padding-top: 32px;
+}
+
+.empty {
+  width: 40px;
+  height: 40px
+}
+
+.head_text {
+  font-size: 16px;
+  font-family: Gilroy-SemiBold;
+  align-self: center;
+}

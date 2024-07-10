@@ -1,12 +1,12 @@
 import styles from './header_page.module.scss'
-import GoBackButton from "../../ButtonComponents/GoBackButton/GoBackButton.jsx";
+import GoBackButton from "../../ButtonComponents/GoBackButtons/GoBackButton/GoBackButton.jsx";
 import SearchHeader from "../../ButtonComponents/SearchHeader/SearchHeader.jsx";
 
 function HeaderPage({text, search}) {
     // search = false
     return (
         <div className={styles.container}>
-            <GoBackButton/>
+            <GoBackButton type={'page'}/>
             <p className={styles.text}>
                 {text}
             </p>

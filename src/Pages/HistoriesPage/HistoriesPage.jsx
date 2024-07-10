@@ -1,5 +1,5 @@
 import styles from './histories_page.module.scss'
-import HeaderForHistories from "../../Components/HeaderForHistories/HeaderForHistories.jsx";
+import HeaderForHistories from "../../HeaderComponents/HeaderForHistories/HeaderForHistories.jsx";
 import HistoryEx from '../../assets/imgs/HistoryEx.png'
 import MainFooter from "../../Components/MainFooter/MainFooter.jsx";
 function HistoriesPage() {

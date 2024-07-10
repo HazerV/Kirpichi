@@ -1,11 +1,19 @@
 .container {
-  //display: flex;
-  flex-direction: row;
-  gap: 10px;
+  flex-direction: column;
 }
 
 .text_head {
   padding-bottom: 8px;
   font-size: 16px;
   font-family: Gilroy-SemiBold;
+}
+
+.gap {
+  flex-direction: column;
+  display: flex;
+  gap: 16px
+}
+
+.pad_bot {
+  padding-bottom: 16px;
 }

@@ -2,11 +2,17 @@
   align-items: flex-start;
   justify-content: center;
   flex-direction: column;
-  gap: 10px;
+  display: flex;
+  gap: 16px;
+}
+
+.head_text {
+  font-family: Gilroy-SemiBold;
+  padding-top: 32px;
 }
 
 .input {
-  flex: 1;
+  //flex: 1;
   border-radius: 3px;
   border-width: 2px;
   display: flex;

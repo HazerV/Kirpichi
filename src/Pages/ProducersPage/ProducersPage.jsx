@@ -1,5 +1,5 @@
 import styles from './producers_page.module.scss'
-import HeaderPage from "../../Components/HeaderPage/HeaderPage.jsx";
+import HeaderPage from "../../HeaderComponents/HeaderPage/HeaderPage.jsx";
 import ProducerPreview from "../../BlockComponents/ProducerPreview/ProducerPreview.jsx";
 import PaginationButtons from "../../ButtonComponents/PaginationButtons/PaginationButtons.jsx";
 import MainFooter from "../../Components/MainFooter/MainFooter.jsx";

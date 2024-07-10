@@ -1,0 +1,15 @@
+.container {
+  padding-left: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 16px;
+}
+
+.filters {
+  display: flex;
+  flex-direction: column;
+  align-self: center;
+  gap: 12px;
+  padding-bottom: 31px;
+}

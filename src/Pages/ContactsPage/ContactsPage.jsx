@@ -1,4 +1,4 @@
-import HeaderPage from "../../Components/HeaderPage/HeaderPage.jsx";
+import HeaderPage from "../../HeaderComponents/HeaderPage/HeaderPage.jsx";
 import {GeoButton} from "../../ButtonComponents/HeaderButtons/HeaderButttons.jsx";
 import FormInfo from "../../BlockComponents/FormPhones/FormInfo.jsx";
 import styles from './contacts_page.module.scss'

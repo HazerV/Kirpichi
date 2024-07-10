@@ -1,11 +1,16 @@
 import styles from './send_req.module.scss'
-function SendRequest () {
+import {Link} from "react-router-dom";
+
+function SendRequest() {
     return (
-        <div className={styles.container}>
-            <p className={styles.text_inside}>
-                Отправить заявку
-            </p>
-        </div>
+        <Link to={'/sendRequest'}>
+            <div className={styles.container}>
+                <p className={styles.text_inside}>
+                    Отправить заявку
+                </p>
+            </div>
+        </Link>
     )
 }
+
 export default SendRequest

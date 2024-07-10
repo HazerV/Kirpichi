@@ -1,20 +1,26 @@
 import styles from './status_indicator.module.scss'
-import React from "react";
+import {useState} from "react";
 
-function StatusIndicator ({text}) {
+function StatusIndicator () {
 
-    const [is_active, setActive] = React.useState(false)
+    const [is_active, setActive] = useState(false)
+    function handleClick () {
+        if (is_active === true) {
+            setActive(false)
+        } else {
+            setActive(true)
+        }
+    }
 
     if (is_active === true) {
         return (
-            <div className={styles.container_active}>
-
+            <div onClick={handleClick} className={styles.container_active}>
+                <div className={styles.inside} />
             </div>
         )
-    } else {
+    } else if (is_active === false) {
         return (
-            <div className={styles.container_non_active}>
-
+            <div onClick={handleClick} className={styles.container_non_active}>
             </div>
         )
     }

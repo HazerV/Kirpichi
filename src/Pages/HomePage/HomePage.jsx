@@ -1,9 +1,11 @@
 import styles from './home_page.module.scss'
-import Header from "../../Components/Header/Header.jsx";
+import Header from "../../HeaderComponents/Header/Header.jsx";
 import HistoriesBLock from "../../Components/HistoriesBlock/HistoriesBLock.jsx";
 import SliderPromo from "../../Components/SliderPromo/SliderPromo.jsx";
 import MainFooter from "../../Components/MainFooter/MainFooter.jsx";
 import CategoriesBlock from "../../Components/CategoriesBlock/CategoriesBlock.jsx";
+import PriceFilter from "../../BlockComponents/Filter/PriceFilter/PriceFilter.jsx";
+import CharactersFilter from "../../BlockComponents/Filter/CharactersFilter/CharactersFilter.jsx";
 function HomePage() {
     return (
         <>

@@ -1,6 +1,6 @@
 import styles from './about_page.module.scss'
 import Example from '../../assets/imgs/ForStories.png'
-import HeaderPage from "../../Components/HeaderPage/HeaderPage.jsx";
+import HeaderPage from "../../HeaderComponents/HeaderPage/HeaderPage.jsx";
 import PaginationButtons from "../../ButtonComponents/PaginationButtons/PaginationButtons.jsx";
 import MainFooter from "../../Components/MainFooter/MainFooter.jsx";
 function AboutPage() {

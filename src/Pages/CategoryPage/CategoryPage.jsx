@@ -1,14 +1,33 @@
+import React from "react";
 import styles from './category_page.module.scss'
-import HeaderPage from "../../Components/HeaderPage/HeaderPage.jsx";
+import HeaderPage from "../../HeaderComponents/HeaderPage/HeaderPage.jsx";
 import ItemComponents from "../../BlockComponents/ItemComponent/ItemComponents.jsx";
 import MainFooter from "../../Components/MainFooter/MainFooter.jsx";
 import PaginationButtons from "../../ButtonComponents/PaginationButtons/PaginationButtons.jsx";
 import UnderCategories from "../../BlockComponents/UnderCategories/UnderCategories.jsx";
 import TextInCategory from "../../BlockComponents/UnderCategories/TextInCategory/TextInCategory.jsx";
 import FilterButtonsField from "../../ButtonComponents/FilterButtons/FilterButtonsField.jsx";
+import {FilterContext} from "../../Context/ModalContext.jsx";
+import FilterModal from "../../Modals/FIlterModal/FilterModal.jsx";
+import SortingModal from "../../Modals/SortingModal/SortingModal.jsx";
 function CategoryPage () {
-    return (
+    const {is_filter_open, is_sorting_open} = React.useContext(FilterContext)
+    if (is_filter_open === true) {
+        return (
+            <div>
+                <FilterModal />
+            </div>
+        )
+    }
+    if (is_sorting_open === true) {
+        return (
+            <div>
+                <SortingModal />
+            </div>
+        )
+    }
 
+    return (
         <>
             <div className={styles.container}>
                 <HeaderPage text={'Клинкерный кирпич'} search={true} />

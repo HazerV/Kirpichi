@@ -13,27 +13,30 @@ import ErrorPage from "./Pages/ErrorPage/ErrorPage.jsx";
 import AboutPage from "./Pages/AboutPage/AboutPage.jsx";
 import ProducersPage from "./Pages/ProducersPage/ProducersPage.jsx";
 import ProductPage from "./Pages/ProductPage/ProductPage.jsx";
-import InterestingPage from "./Pages/InterestingPage/InterestingPage.jsx";
+import SendRequestPage from "./Pages/SendRequestPage/SendRequestPage.jsx";
 import {PaginationContext, ButtonContext} from "./Context/PaginationContext.jsx";
+import {FilterContext, ModalContext} from "./Context/ModalContext.jsx";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
     <React.StrictMode>
         <BrowserRouter>
-            <PaginationContext>
-                    <Routes>
-                        <Route path='*' element={<ErrorPage/>}/>
-                        <Route path='/' element={<HomePage/>}/>
-                        <Route path='/categories' element={<CategoryPage/>}/>
-                        <Route path='/contacts' element={<ContactsPage/>}/>
-                        <Route path='/histories' element={<HistoriesPage/>}/>
-                        <Route path='/delivery' element={<DeliveryPage/>}/>
-                        <Route path='/about' element={<AboutPage/>}/>
-                        <Route path='/producers' element={<ProducersPage/>}/>
-                        <Route path='/category' element={<CategoryPage/>} />
-                        <Route path='/product' element={<ProductPage/>} />
-                        <Route path='/interesing' element={<InterestingPage/>} />
-                    </Routes>
-            </PaginationContext>
+            <ModalContext>
+                <Routes>
+
+                    <Route path='*' element={<ErrorPage/>}/>
+                    <Route path='/' element={<HomePage/>}/>
+                    <Route path='/categories' element={<CategoryPage/>}/>
+                    <Route path='/contacts' element={<ContactsPage/>}/>
+                    <Route path='/histories' element={<HistoriesPage/>}/>
+                    <Route path='/delivery' element={<DeliveryPage/>}/>
+                    <Route path='/about' element={<AboutPage/>}/>
+                    <Route path='/producers' element={<ProducersPage/>}/>
+                    <Route path='/category' element={<CategoryPage/>}/>
+                    <Route path='/product' element={<ProductPage/>}/>
+                    <Route path='/sendRequest' element={<SendRequestPage/>}/>
+
+                </Routes>
+            </ModalContext>
         </BrowserRouter>
     </React.StrictMode>
 );

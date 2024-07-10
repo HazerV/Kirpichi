@@ -3,7 +3,7 @@ import ImageEx from "../../assets/imgs/ImageEx.png";
 import ImageBig from '../../assets/imgs/SliderBan.png'
 import Carousel from "react-multi-carousel";
 
-const pixelRatio = 1.2
+const pixelRatio = 1.1
 function SliderPromo() {
     const responsive = {
         all: {
@@ -17,6 +17,8 @@ function SliderPromo() {
                 <Carousel
                     responsive={responsive}
                     infinite={true}
+                    autoPlay={true}
+                    autoPlaySpeed={3000}
                     arrows={false}
                     showDots={true}
                 >
