@@ -24,7 +24,7 @@ function HistoriesBLock({text, href}) {
         },
         mobile: {
             breakpoint: {max: 449, min: 320},
-            items: 2.7
+            items: 2.65
         }
     };
 

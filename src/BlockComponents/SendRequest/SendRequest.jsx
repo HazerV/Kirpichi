@@ -3,7 +3,7 @@ import {Link} from "react-router-dom";
 
 function SendRequest() {
     return (
-        <Link to={'/sendRequest'}>
+        <Link className={styles.no_underline} to={'/sendRequest'}>
             <div className={styles.container}>
                 <p className={styles.text_inside}>
                     Отправить заявку

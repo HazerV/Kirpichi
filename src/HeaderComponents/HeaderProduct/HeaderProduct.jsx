@@ -1,14 +1,15 @@
-import styles from "../HeaderPage/header_page.module.scss";
-import GoBackButton from "../../ButtonComponents/GoBackButtons/GoBackButton/GoBackButton.jsx";
-import SearchHeader from "../../ButtonComponents/SearchHeader/SearchHeader.jsx";
+import styles from './header_product.module.scss'
 import AddToFavoriteButton from "../../ButtonComponents/AddToFavoriteButton/AddToFavoriteButton.jsx";
-function HeaderProduct ({text, search}) {
+import GoBackButton from "../../ButtonComponents/GoBackButtons/GoBackButton/GoBackButton.jsx";
+function HeaderProduct ({category_name}) {
     return (
         <div className={styles.container}>
-            <GoBackButton type={'page'}/>
-            <p className={styles.text}>
-                {text}
-            </p>
+            <div className={styles.back_and_text}>
+                <GoBackButton type={'page'} />
+                <p className={styles.text}>
+                    {category_name}
+                </p>
+            </div>
             <AddToFavoriteButton />
         </div>
     )

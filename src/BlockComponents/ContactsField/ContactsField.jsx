@@ -5,13 +5,13 @@ function ContactsField () {
             <p className={styles.head_text}>
                 Контактные данные
             </p>
-            <div>
+            <div className={styles.pad_bot}>
                 <p>
                     Номер телефона *
                 </p>
                 <input className={styles.input} />
             </div>
-            <div>
+            <div className={styles.pad_bot}>
                 <p>
                     Имя
                 </p>

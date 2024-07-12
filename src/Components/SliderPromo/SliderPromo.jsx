@@ -3,7 +3,7 @@ import ImageEx from "../../assets/imgs/ImageEx.png";
 import ImageBig from '../../assets/imgs/SliderBan.png'
 import Carousel from "react-multi-carousel";
 
-const pixelRatio = 1.1
+const pixelRatio = 1.
 function SliderPromo() {
     const responsive = {
         all: {
@@ -23,7 +23,7 @@ function SliderPromo() {
                     showDots={true}
                 >
                     <picture>
-                        <source media={`(-webkit-min-device-pixel-ratio: ${pixelRatio})`} srcSet={ImageBig}/>
+                        <source media='(min-width: 1024px)' srcSet={ImageBig}/>
                         <img
                             className={styles.image}
                             src={ImageEx}

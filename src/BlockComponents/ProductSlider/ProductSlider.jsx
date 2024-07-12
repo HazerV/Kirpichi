@@ -7,17 +7,18 @@ function ProductSlider () {
         desktop: {
             breakpoint: { max: 4000, min: 1024 },
             items: 5,
-            partialVisibilityGutter: 20
         },
-        tablet: {
-            breakpoint: { max: 1024, min: 464 },
-            items: 3,
-            partialVisibilityGutter: 30
+        mobile2: {
+            breakpoint: { max: 600, min: 501 },
+            items: 2.8,
+        },
+        mobile1: {
+            breakpoint: { max: 500, min: 400 },
+            items: 2.6,
         },
         mobile: {
-            breakpoint: { max: 464, min: 0 },
-            items: 2.6,
-            partialVisibilityGutter: 30
+            breakpoint: { max: 400, min: 0 },
+            items: 2.4,
         }
     };
 
@@ -25,7 +26,7 @@ function ProductSlider () {
         <div>
             <Carousel
                 responsive={responsive}
-                infinite={true}
+                // infinite={true}
                 arrows={false}
             >
                 <div>
@@ -43,7 +44,6 @@ function ProductSlider () {
                 <div>
                     <img src={ProductEx} alt=""/>
                 </div>
-
             </Carousel>
         </div>
     )

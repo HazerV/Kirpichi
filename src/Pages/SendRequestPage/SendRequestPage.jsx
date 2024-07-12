@@ -8,7 +8,9 @@ import PersonalData from "../../BlockComponents/PersonalData/PersonalData.jsx";
 function SendRequestPage() {
     return (
         <div className={styles.container}>
-            <HeaderForHistories text={'Отправить заявку'}/>
+            <div className={styles.pad_bot_32}>
+                <HeaderForHistories text={'Отправить заявку'}/>
+            </div>
             <div className={styles.pad_bot_32}>
                 <InterestingGoods/>
             </div>

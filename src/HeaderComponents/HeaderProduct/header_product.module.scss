@@ -1,3 +1,19 @@
 .container {
+  display: flex;
+  padding-top: 32px;
+  padding-bottom: 16px;
+  align-items: center;
+  justify-content: space-between;
+  padding-right: 10px;
+}
 
+.back_and_text {
+  display: flex;
+  gap: 10px;
+}
+
+.text {
+  font-family: Gilroy-Medium;
+  font-size: 14px;
+  align-self: center;
 }

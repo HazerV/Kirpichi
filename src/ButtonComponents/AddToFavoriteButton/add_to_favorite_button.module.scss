@@ -1,8 +1,19 @@
-.container {
+.container_non_active {
   display: flex;
   align-items: center;
   justify-content: center;
   background-color: #EBE7E3;
+  border-width: 0;
+  border-radius: 4px;
+  width: 40px;
+  height: 40px;
+}
+
+.container_active {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #89242B;
   border-width: 0;
   border-radius: 4px;
   width: 40px;

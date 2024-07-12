@@ -2,9 +2,8 @@
   display: flex;
   padding-top: 32px;
   padding-bottom: 16px;
-  //justify-content: space-between;
   align-items: flex-start;
-  gap: 12px
+  gap: 12px;
 }
 
 .text {
@@ -14,6 +13,4 @@
   text-align: center;
   align-self: center;
   justify-self: center;
-  max-width: 200px;
-
 }

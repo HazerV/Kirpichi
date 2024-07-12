@@ -1,5 +1,4 @@
 .container {
-
   flex-direction: column;
 }
 
@@ -12,18 +11,66 @@
 }
 
 .price_field {
+  font-family: Gilroy-Medium;
+  font-size: 24px;
   display: flex;
-  justify-content: flex-end;
-  align-items: center;
   border-color: black;
   border-style: solid;
   border-radius: 4px;
   border-width: 2px;
   width: 100px;
-  height: 40px;
-  padding: 5px;
+  height: 48px;
 }
 
+.opened_dropdown {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  border-color: black;
+  border-style: solid;
+  border-radius: 4px;
+  border-width: 2px;
+  width: 134px;
+  height: 96px;
+}
+
+.drop_cont {
+
+}
+
+.dropdown {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-color: black;
+  border-style: solid;
+  border-radius: 4px;
+  border-width: 2px;
+  width: 134px;
+  height: 48px;
+
+}
+
+.text_dropdown {
+  font-family: Gilroy-Medium;
+  font-size: 14px;
+  margin-left: 5px;
+}
+
+.arrow {
+  width: 16px;
+  height: 16px;
+  padding-right: 8px;
+}
+
+.pad32 {
+  padding-bottom: 32px;
+}
+
+.pad16 {
+  padding-bottom: 16px;
+}
 
 .count_inside {
   font-family: Gilroy-Medium;
@@ -31,10 +78,4 @@
   font-weight: 400;
 }
 
-.dropdown {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100px;
-  height: 40px;
-}
+

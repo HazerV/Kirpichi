@@ -7,9 +7,6 @@ function PriceField () {
                 Стоимость:
             </p>
             <CountField />
-            <div>
-
-            </div>
         </div>
     )
 }

@@ -7,7 +7,6 @@ function CountTypesField () {
             <Type used={false} price={'57 000 руб'} count={'1 000 штук'} />
             <Type used={false} price={'57 000 руб'} count={'1 000 штук'} />
             <Type used={false} price={'420 000 руб'} count={'1 машина'} />
-            <Type used={false} price={'420 000 руб'} count={'1 машина'} />
         </div>
     )
 }
