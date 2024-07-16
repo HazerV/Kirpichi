@@ -34,7 +34,6 @@ ReactDOM.createRoot(document.getElementById("root")).render(
                     <Route path='/category' element={<CategoryPage/>}/>
                     <Route path='/product' element={<ProductPage/>}/>
                     <Route path='/sendRequest' element={<SendRequestPage/>}/>
-
                 </Routes>
             </ModalContext>
         </BrowserRouter>

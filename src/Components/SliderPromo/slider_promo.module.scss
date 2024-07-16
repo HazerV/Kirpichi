@@ -2,23 +2,46 @@
   width: 100%;
   display: flex;
   justify-content: center;
-  padding-bottom: 50px;
+  padding-bottom: 32px;
 }
 
 .image_block {
   width: 100%;
   //aspect-ratio: 1/1;
-  @media screen and (min-width: 460px) {
-    max-width: 460px;
+  @media screen and (min-width: 719px) {
+    max-width: 720px;
   }
-  @media screen and (min-width: 1024px) {
+  @media screen and (min-width: 719px) {
     max-width: 960px;
     aspect-ratio: 9/4;
 
   }
 }
+
 .image {
   width: 100%;
   height: 100%;
   border-radius: 3px;
+}
+
+.carouselWrapper {
+  position: relative;
+  padding-bottom: 30px;
+}
+
+.carouselWrapper :global(.react-multi-carousel-dot-list) {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.carouselWrapper :global(.react-multi-carousel-dot button) {
+  border-color: white;
+  border-radius: 0;
+  padding: 0;
+}
+
+.carouselWrapper :global(.react-multi-carousel-dot--active button) {
+  background: #89242B;
 }

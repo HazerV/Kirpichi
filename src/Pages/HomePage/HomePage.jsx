@@ -6,7 +6,13 @@ import MainFooter from "../../Components/MainFooter/MainFooter.jsx";
 import CategoriesBlock from "../../Components/CategoriesBlock/CategoriesBlock.jsx";
 import PriceFilter from "../../BlockComponents/Filter/PriceFilter/PriceFilter.jsx";
 import CharactersFilter from "../../BlockComponents/Filter/CharactersFilter/CharactersFilter.jsx";
+import {getBanners} from "../../services/banners/index.js";
+import {useEffect, useState} from "react";
+
+
 function HomePage() {
+
+
     return (
         <>
             <Header/>
@@ -21,5 +27,6 @@ function HomePage() {
         </>
     )
 }
+
 
 export default HomePage

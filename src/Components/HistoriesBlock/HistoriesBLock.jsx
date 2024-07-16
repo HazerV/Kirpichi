@@ -19,12 +19,16 @@ function HistoriesBLock({text, href}) {
             items: 4,
         },
         tablet: {
-            breakpoint: {max: 549, min: 450},
-            items: 3,
+            breakpoint: {max: 549, min: 412},
+            items: 2.8,
         },
         mobile: {
-            breakpoint: {max: 449, min: 320},
+            breakpoint: {max: 411, min: 370},
             items: 2.65
+        },
+        mobile_firs: {
+            breakpoint: {max: 369, min: 290},
+            items: 2.3
         }
     };
 

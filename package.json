@@ -12,6 +12,8 @@
   "dependencies": {
     "@lifarl/react-scroll-snap-slider": "^2.0.5",
     "@pbe/react-yandex-maps": "^1.2.5",
+    "axios": "^1.7.2",
+    "dotenv": "^16.4.5",
     "flowbite-react": "^0.10.1",
     "google-map-react": "^2.2.1",
     "localforage": "^1.10.0",
