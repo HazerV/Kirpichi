@@ -15,13 +15,14 @@ function SliderPromo() {
             setBannerData(data);
         });
     }, []);
+
     const responsive = {
         all: {
             breakpoint: {max: 4080, min: 300},
             items: 1,
         }
     };
-    console.log('here', bannerData)
+
     return (
         <div className={styles.promo}>
             <div className={styles.image_block}>

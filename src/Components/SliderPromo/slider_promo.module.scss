@@ -2,19 +2,17 @@
   width: 100%;
   display: flex;
   justify-content: center;
-  padding-bottom: 32px;
+  //padding-bottom: 32px;
 }
 
 .image_block {
   width: 100%;
-  //aspect-ratio: 1/1;
   @media screen and (min-width: 719px) {
     max-width: 720px;
   }
   @media screen and (min-width: 719px) {
     max-width: 960px;
     aspect-ratio: 9/4;
-
   }
 }
 

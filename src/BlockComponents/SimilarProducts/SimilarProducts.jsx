@@ -1,14 +1,13 @@
 import styles from './similar_products.module.scss'
 import DefaultButton from "../../ButtonComponents/DefaultButton/DefaultButton.jsx";
-function SimilarProducts ({text}) {
+function SimilarProducts ({key, text, name, route}) {
     return (
         <div className={styles.container}>
             <p className={styles.head_text}>
-                {text}
+                Похожие товары:
             </p>
             <div className={styles.block}>
-                <DefaultButton text={'Утолщенный кирпич'}/>
-                <DefaultButton text={'Утолщенный кирпич'}/>
+                <DefaultButton text={name} href={route}/>
             </div>
         </div>
     )

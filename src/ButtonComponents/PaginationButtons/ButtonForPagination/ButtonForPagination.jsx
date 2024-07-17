@@ -1,3 +1,4 @@
+import React from "react";
 import styles from './button_for_pag.module.scss'
 
 function FilledPaginationButton ({count, status}) {
@@ -10,9 +11,9 @@ function FilledPaginationButton ({count, status}) {
     )
 }
 
-function UnfilledPaginationButton ({count, status}) {
+function UnfilledPaginationButton ({count, onClick}) {
     return (
-        <button className={styles.container_unfill}>
+        <button className={styles.container_unfill} onClick={onClick}>
             <p className={styles.unfilled_text}>
                 {count}
             </p>

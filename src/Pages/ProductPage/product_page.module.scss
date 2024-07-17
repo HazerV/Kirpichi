@@ -1,7 +1,11 @@
 .container {
   padding-left: 10px;
-  display: flex;
+  //display: flex;
   flex-direction: column;
+  @media screen and (min-width: 580px) {
+    display: flex;
+    align-items: center;
+  }
 }
 
 .price {
@@ -11,14 +15,32 @@
   font-size: 14px;
 }
 
+.slider {
+  align-items: center;
+  justify-content: center;
+  @media screen and (min-width: 580px) {
+    //display: flex;
+    max-width: 500px;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
 .pad_bot {
   padding-bottom: 32px;
 }
 
 .pad_right {
   padding-right: 10px;
+  //padding-bottom: 16px;
 }
 
-.slider {
+.text {
+  font-family: Gilroy-SemiBold;
+  font-size: 14px;
+  padding-bottom: 16px;
+}
 
+.pad_top {
+  padding-top: 32px;
 }

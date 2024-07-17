@@ -8,11 +8,7 @@ import PriceFilter from "../../BlockComponents/Filter/PriceFilter/PriceFilter.js
 import CharactersFilter from "../../BlockComponents/Filter/CharactersFilter/CharactersFilter.jsx";
 import {getBanners} from "../../services/banners/index.js";
 import {useEffect, useState} from "react";
-
-
 function HomePage() {
-
-
     return (
         <>
             <Header/>

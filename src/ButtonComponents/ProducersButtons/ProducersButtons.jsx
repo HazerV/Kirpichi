@@ -1,14 +1,14 @@
 import styles from './producers_buttons.module.scss'
 import DefaultButton from "../DefaultButton/DefaultButton.jsx";
 
-function ProducersButtons ({text}) {
+function ProducersButtons ({text, name, route}) {
     return (
         <div className={styles.container}>
             <p className={styles.head_text}>
-                {text}
+                Производитель
             </p>
             <div className={styles.block}>
-                <DefaultButton text={'Клинкер банк'}/>
+                <DefaultButton href={route} text={name}/>
             </div>
         </div>
     )

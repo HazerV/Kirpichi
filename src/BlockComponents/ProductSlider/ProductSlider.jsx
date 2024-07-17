@@ -1,8 +1,8 @@
 import Carousel from "react-multi-carousel";
 import ProductEx from '../../assets/imgs/ProductEx.png'
+import styles from './product_slider.module.scss'
 
-
-function ProductSlider () {
+function ProductSlider ({photo, photo2x}) {
     const responsive = {
         desktop: {
             breakpoint: { max: 4000, min: 1024 },
@@ -23,27 +23,16 @@ function ProductSlider () {
     };
 
     return (
-        <div>
+        <div className={styles.container}>
             <Carousel
                 responsive={responsive}
                 // infinite={true}
                 arrows={false}
             >
-                <div>
-                    <img src={ProductEx} alt=""/>
-                </div>
-                <div>
-                    <img src={ProductEx} alt=""/>
-                </div>
-                <div>
-                    <img src={ProductEx} alt=""/>
-                </div>
-                <div>
-                    <img src={ProductEx} alt=""/>
-                </div>
-                <div>
-                    <img src={ProductEx} alt=""/>
-                </div>
+                <picture>
+                    <source media='(min-width: 1024px)' srcSet={photo2x}/>
+                    <img src={photo} alt=""/>
+                </picture>
             </Carousel>
         </div>
     )

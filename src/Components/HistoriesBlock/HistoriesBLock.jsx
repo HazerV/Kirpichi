@@ -38,7 +38,7 @@ function HistoriesBLock({text, href}) {
                 <h className={styles.text_block}>
                     {text}
                 </h>
-                <Link style={{textDecoration: 'none'}} to={`${href}`}>
+                <Link className={styles.decoration} to={`${href}`}>
                     <div className={styles.text_all}>
                         <p style={{fontSize: 14}}>
                             Все

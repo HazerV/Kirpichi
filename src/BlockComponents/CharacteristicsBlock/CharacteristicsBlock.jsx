@@ -1,11 +1,8 @@
 import styles from './characteristics_block.module.scss'
 
-function CharacteristicsBlock ({name, text}) {
+function CharacteristicsBlock ({name, text, key}) {
     return (
         <div className={styles.container}>
-            <p className={styles.head_text}>
-                Характеристики:
-            </p>
             <div className={styles.block}>
                 <p className={styles.text_inside}>
                     {name}

@@ -3,13 +3,13 @@ import {Link} from "react-router-dom";
 
 function SendRequest() {
     return (
-        <Link className={styles.no_underline} to={'/sendRequest'}>
-            <div className={styles.container}>
+        <div className={styles.container}>
+            <Link className={styles.no_underline} to={'/sendRequest'}>
                 <p className={styles.text_inside}>
                     Отправить заявку
                 </p>
-            </div>
-        </Link>
+            </Link>
+        </div>
     )
 }
 
