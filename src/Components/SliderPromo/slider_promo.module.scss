@@ -2,11 +2,13 @@
   width: 100%;
   display: flex;
   justify-content: center;
-  //padding-bottom: 32px;
+  border-radius: 8px;
+
 }
 
 .image_block {
   width: 100%;
+  position: relative; // Добавлено
   @media screen and (min-width: 719px) {
     max-width: 720px;
   }
@@ -14,22 +16,23 @@
     max-width: 960px;
     aspect-ratio: 9/4;
   }
+
 }
 
 .image {
   width: 100%;
   height: 100%;
-  border-radius: 3px;
+  border-radius: 8px;
 }
 
 .carouselWrapper {
   position: relative;
-  padding-bottom: 30px;
+  padding-bottom: 30px; // Добавлено
 }
 
 .carouselWrapper :global(.react-multi-carousel-dot-list) {
   position: absolute;
-  bottom: 0;
+  bottom: -10px;
   left: 0;
   right: 0;
 }

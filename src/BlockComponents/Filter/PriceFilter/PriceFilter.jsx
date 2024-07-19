@@ -1,19 +1,29 @@
+import {useState} from "react";
+
 import styles from './price_filter.module.scss'
 import UpSvg from '../../../assets/icons/Up.svg'
 import DownSvg from '../../../assets/icons/Down.svg'
-import React from "react";
-function PriceFilter () {
 
-    const [open, setOpen] = React.useState(false)
+function PriceFilter ({ minPrice, maxPrice, onPriceChange }) {
+
+    const [open, setOpen] = useState(false)
+    const [minPriceInput, setMinPriceInput] = useState(minPrice)
+    const [maxPriceInput, setMaxPriceInput] = useState(maxPrice)
     function handleClick () {
-        if (open === false) {
-            setOpen(true)
-        } else {
-            setOpen(false)
-        }
+        setOpen(!open)
+    }
+    function handleMinPriceChange (event) {
+        const newMinPrice = parseInt(event.target.value, 10)
+        setMinPriceInput(newMinPrice)
+        onPriceChange([newMinPrice, maxPriceInput])
+    }
+    function handleMaxPriceChange (event) {
+        const newMaxPrice = parseInt(event.target.value, 10)
+        setMaxPriceInput(newMaxPrice)
+        onPriceChange([minPriceInput, newMaxPrice])
     }
 
-    if (open === false) {
+    if (!open) {
         return (
             <div onClick={handleClick} className={styles.button_container}>
                 <p className={styles.head_text}>
@@ -35,13 +45,23 @@ function PriceFilter () {
                     <p className={styles.text}>
                         Цена от
                     </p>
-                    <input className={styles.input} type="text"/>
+                    <input
+                        className={styles.input}
+                        type="number"
+                        value={minPriceInput}
+                        onChange={handleMinPriceChange}
+                    />
                 </div>
                 <div>
                     <p className={styles.text}>
                         Цена до
                     </p>
-                    <input className={styles.input} type="text"/>
+                    <input
+                        className={styles.input}
+                        type="number"
+                        value={maxPriceInput}
+                        onChange={handleMaxPriceChange}
+                    />
                 </div>
             </div>
         )

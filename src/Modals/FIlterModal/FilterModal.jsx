@@ -1,22 +1,35 @@
 import React from "react";
-import styles from './filter_modal.module.scss'
+import styles from './filter_modal.module.scss';
 import HeaderForFilter from "../../HeaderComponents/HeaderForFilter/HeaderForFilter.jsx";
 import PriceFilter from "../../BlockComponents/Filter/PriceFilter/PriceFilter.jsx";
-import UniversalFilter from "../../ButtonComponents/FilterButtons/UniversalFilter/UniversalFilter.jsx";
 import CharactersFilter from "../../BlockComponents/Filter/CharactersFilter/CharactersFilter.jsx";
 import SaveFilterButton from "../../ButtonComponents/FilterButtons/SaveFilterButton/SaveFilterButton.jsx";
-import {FilterContext} from "../../Context/ModalContext.jsx";
-function FilterModal ({data}) {
+
+function FilterModal({ data, onPriceChange, onAttributeChange, selectedAttributes }) {
     return (
         <div className={styles.container}>
             <HeaderForFilter />
             <div className={styles.filters}>
-                <PriceFilter />
-                <CharactersFilter text={'Параметр фильтра'} />
+                <PriceFilter
+                    minPrice={data.min_price}
+                    maxPrice={data.max_price}
+                    onPriceChange={onPriceChange}
+                />
+                {
+                    Object.entries(data.aggregated_attributes).map(([attributeName, attributeValues]) => (
+                        <CharactersFilter
+                            key={attributeName}
+                            text={attributeName}
+                            values={attributeValues}
+                            selectedValue={selectedAttributes[attributeName]}
+                            onAttributeChange={(value) => onAttributeChange(attributeName, value)}
+                        />
+                    ))
+                }
             </div>
             <SaveFilterButton />
         </div>
-    )
+    );
 }
 
-export default FilterModal
+export default FilterModal;

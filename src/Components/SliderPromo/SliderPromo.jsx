@@ -32,7 +32,7 @@ function SliderPromo() {
                         infinite={true}
                         autoPlay={true}
                         autoPlaySpeed={3000}
-                        arrows={false}
+                        // arrows={false}
                         showDots={true}
                     >
                         {bannerData.map((banner, index) => (

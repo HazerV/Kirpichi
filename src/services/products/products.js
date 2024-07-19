@@ -6,7 +6,7 @@ export async function getProductsByCategoryId (slug) {
 }
 
 export async function getProductsByBrandId(slug) {
-    return axios.get(`/products/getByCategoryId?slug=${slug}`)
+    return  axios.get(`/products/getByCategoryId?slug=${slug}`)
 }
 
 export async function getProductsAll () {
