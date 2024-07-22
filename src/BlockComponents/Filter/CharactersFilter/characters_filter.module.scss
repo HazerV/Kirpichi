@@ -1,7 +1,6 @@
 .container {
   display: flex;
   flex-direction: column;
-  align-self: center;
   align-items: center;
   background-color: #EBE7E3;
   width: 286px;
@@ -10,6 +9,15 @@
   padding-bottom: 23px;
   gap: 13px;
 }
+
+.options {
+  display: flex;
+  flex-direction: column;
+  gap: 8px
+  //align-items: center;
+  //justify-content: center;
+}
+
 
 .head_align {
   display: flex;
@@ -23,8 +31,9 @@
 }
 
 .align {
+  padding-left: 23px;
   display: flex;
-  justify-content: center;
+  //justify-content: center;
   align-items: center;
   gap: 8px;
 }

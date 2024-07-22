@@ -12,37 +12,39 @@ import PaginationButtons from "../../ButtonComponents/PaginationButtons/Paginati
 import Header from "../../HeaderComponents/Header/Header.jsx";
 
 function CategoryPage() {
-    const { is_filter_open, is_sorting_open } = useContext(FilterContext);
-    const { categorySlug } = useParams();
+    const {is_filter_open, is_sorting_open, set_sorting_open, sortBy, setSortBy} = useContext(FilterContext);
     const location = useLocation();
     const navigate = useNavigate();
-    const searchParams = new URLSearchParams(location.search);
+    const {categorySlug} = useParams();
+    const {categoryTitle} = useLocation().state || {};
 
-    const categoryTitle = decodeURIComponent(searchParams.get('title') || '');
     const [products, setProducts] = useState([]);
     const [totalProducts, setTotalProducts] = useState(0);
     const [minPrice, setMinPrice] = useState(0);
     const [maxPrice, setMaxPrice] = useState(0);
     const itemsPerPage = 30;
-    const currentPage = parseInt(searchParams.get('page')) || 1;
-    const minPriceParam = parseInt(searchParams.get('min_price')) || undefined;
-    const maxPriceParam = parseInt(searchParams.get('max_price')) || undefined;
+    const currentPage = parseInt(new URLSearchParams(location.search).get('page')) || 1;
+    const minPriceParam = parseInt(new URLSearchParams(location.search).get('min_price')) || undefined;
+    const maxPriceParam = parseInt(new URLSearchParams(location.search).get('max_price')) || undefined;
     const [aggregatedAttributes, setAggregatedAttributes] = useState({});
     const [selectedAttributes, setSelectedAttributes] = useState({});
+
 
     const fetchProducts = async () => {
         try {
             const offset = (currentPage - 1) * itemsPerPage;
-
-            const response = await superFilter({
+            const searchParams = new URLSearchParams(location.search);
+            const params = {
                 categories_id: [categorySlug],
                 limit: itemsPerPage,
                 offset: offset,
                 min_price: minPriceParam,
                 max_price: maxPriceParam,
+                sortBy: sortBy,
                 ...Object.fromEntries(searchParams.entries()),
-            });
-
+            };
+            console.log(params)
+            const response = await superFilter(params);
             setAggregatedAttributes(response.data.aggregated_attributes);
             setProducts(response.data.products);
             setTotalProducts(response.data.products_total);
@@ -55,24 +57,39 @@ function CategoryPage() {
 
     useEffect(() => {
         const selectedAttributesFromURL = {};
-        for (const [key, value] of searchParams.entries()) {
-            if (key !== 'page' && key !== 'min_price' && key !== 'max_price' && key !== 'title') {
+        for (const [key, value] of new URLSearchParams(location.search).entries()) {
+            if (key !== 'page' && key !== 'min_price' && key !== 'max_price' && key !== 'title' && key !== 'sortBy') {
                 selectedAttributesFromURL[key] = value;
             }
         }
         setSelectedAttributes(selectedAttributesFromURL);
         fetchProducts();
-    }, [categorySlug, currentPage, minPriceParam, maxPriceParam]);
+    }, [categorySlug, currentPage, minPriceParam, maxPriceParam, sortBy]);
 
     const handlePageChange = (pageNumber) => {
         const params = new URLSearchParams(location.search);
         params.set('page', pageNumber);
         if (minPriceParam) params.set('min_price', minPriceParam);
         if (maxPriceParam) params.set('max_price', maxPriceParam);
+        if (sortBy) params.set('sortBy', sortBy);
         Object.entries(selectedAttributes).forEach(([name, value]) => {
             if (value) params.set(name, value);
         });
         navigate(`/categories/${categorySlug}?${params.toString()}`);
+    };
+
+    const handleSortChange = (newSortBy) => {
+        const params = new URLSearchParams(location.search);
+        params.set('page', 1);
+        if (minPriceParam) params.set('min_price', minPriceParam);
+        if (maxPriceParam) params.set('max_price', maxPriceParam);
+        Object.entries(selectedAttributes).forEach(([name, value]) => {
+            if (value) params.set(name, value);
+        });
+        params.set('sortBy', newSortBy);
+        navigate(`/categories/${categorySlug}?${params.toString()}`);
+        setSortBy(newSortBy);
+        set_sorting_open(false);
     };
 
     const handlePriceChange = (newPriceRange) => {
@@ -84,6 +101,7 @@ function CategoryPage() {
         Object.entries(selectedAttributes).forEach(([name, value]) => {
             if (value) params.set(name, value);
         });
+        if (sortBy) params.set('sortBy', sortBy);
         navigate(`/categories/${categorySlug}?${params.toString()}`);
     };
 
@@ -92,6 +110,7 @@ function CategoryPage() {
         params.set('page', 1);
         if (minPriceParam) params.set('min_price', minPriceParam);
         if (maxPriceParam) params.set('max_price', maxPriceParam);
+        if (sortBy) params.set('sortBy', sortBy);
 
         Object.entries(newSelectedAttributes).forEach(([name, value]) => {
             if (value) params.set(name, value);
@@ -111,6 +130,16 @@ function CategoryPage() {
 
     const totalPages = Math.ceil(totalProducts / itemsPerPage);
 
+    const sortProducts = (a, b) => {
+        if (sortBy === 'price_asc') {
+            return a.price - b.price;
+        } else if (sortBy === 'price_desc') {
+            return b.price - a.price;
+        } else {
+            return 0;
+        }
+    };
+
     if (is_filter_open === true) {
         return (
             <FilterModal
@@ -126,19 +155,22 @@ function CategoryPage() {
         );
     }
 
+    if (is_sorting_open === true) {
+        return (
+            <SortingModal onSortChange={handleSortChange} sortBy={sortBy}/>
+        );
+    }
+
     return (
         <>
             <div className={styles.container}>
-                <Header />
+                <Header/>
             </div>
             <div className={styles.pad_bot16}>
-                <FilterButtonsField />
+                <FilterButtonsField/>
             </div>
-            {is_sorting_open && (
-                <SortingModal />
-            )}
             <div className={styles.block}>
-                {products.map((product, index) => (
+                {products.sort(sortProducts).map((product, index) => (
                     <ItemComponents
                         {...product}
                         image={product.images.photo}
@@ -162,9 +194,8 @@ function CategoryPage() {
                     categoryTitle={categoryTitle}
                 />
             </div>
-            <MainFooter />
+            <MainFooter/>
         </>
     );
 }
-
-export default CategoryPage;
+export default CategoryPage

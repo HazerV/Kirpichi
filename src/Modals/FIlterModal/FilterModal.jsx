@@ -4,8 +4,34 @@ import HeaderForFilter from "../../HeaderComponents/HeaderForFilter/HeaderForFil
 import PriceFilter from "../../BlockComponents/Filter/PriceFilter/PriceFilter.jsx";
 import CharactersFilter from "../../BlockComponents/Filter/CharactersFilter/CharactersFilter.jsx";
 import SaveFilterButton from "../../ButtonComponents/FilterButtons/SaveFilterButton/SaveFilterButton.jsx";
+import {useLocation, useNavigate, useParams} from "react-router-dom";
 
 function FilterModal({ data, onPriceChange, onAttributeChange, selectedAttributes }) {
+    const location = useLocation();
+    const navigate = useNavigate();
+
+    const handlePriceChange = (newPriceRange) => {
+        onPriceChange(newPriceRange);
+        updateURL(newPriceRange[0], newPriceRange[1], selectedAttributes);
+    };
+
+    const handleAttributeChange = (attributeName, attributeValue) => {
+        onAttributeChange(attributeName, attributeValue);
+        updateURL(null, null, { ...selectedAttributes, [attributeName]: attributeValue });
+    };
+    const {categorySlug} = useParams();
+
+    const updateURL = (newMinPrice, newMaxPrice, newSelectedAttributes) => {
+        const params = new URLSearchParams(location.search);
+        params.set('page', 1);
+        if (newMinPrice !== null) params.set('min_price', newMinPrice);
+        if (newMaxPrice !== null) params.set('max_price', newMaxPrice);
+        Object.entries(newSelectedAttributes).forEach(([name, value]) => {
+            if (value) params.set(name, value);
+        });
+        navigate(`/categories/${categorySlug}?${params.toString()}`);
+    };
+
     return (
         <div className={styles.container}>
             <HeaderForFilter />
@@ -13,7 +39,7 @@ function FilterModal({ data, onPriceChange, onAttributeChange, selectedAttribute
                 <PriceFilter
                     minPrice={data.min_price}
                     maxPrice={data.max_price}
-                    onPriceChange={onPriceChange}
+                    onPriceChange={handlePriceChange}
                 />
                 {
                     Object.entries(data.aggregated_attributes).map(([attributeName, attributeValues]) => (
@@ -22,7 +48,7 @@ function FilterModal({ data, onPriceChange, onAttributeChange, selectedAttribute
                             text={attributeName}
                             values={attributeValues}
                             selectedValue={selectedAttributes[attributeName]}
-                            onAttributeChange={(value) => onAttributeChange(attributeName, value)}
+                            onAttributeChange={(value) => handleAttributeChange(attributeName, value)}
                         />
                     ))
                 }

@@ -1,21 +1,25 @@
 import styles from './categoies_block.module.scss'
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { getMesh } from "../../services/banners/index.js";
 import { useEffect, useState } from "react";
-import { getProductsByCategoryId } from "../../services/products/products.js";
+import {getAllCategories} from "../../services/categories/categories.js";
 
-function CategoriesBlock () {
+function CategoriesBlock() {
     const [mesh, setMesh] = useState([]);
+    const navigate = useNavigate();
 
     useEffect(() => {
         getMesh()
             .then((res) => {
                 if (res.data.status === 'ok') {
                     setMesh(res.data.banners);
-                    console.log(mesh.map((i) => i));
                 }
             })
     }, []);
+
+    const handleCategoryClick = (categorySlug, categoryTitle) => {
+        navigate(`/categories/${categorySlug}`, { state: { categoryTitle } });
+    };
 
     return (
         <div className={styles.container}>
@@ -31,7 +35,7 @@ function CategoriesBlock () {
                             key={index}
                             to={`/categories/${categorySlug}`}
                             state={{ categoryTitle }}
-                            onClick={() => getProductsByCategoryId(categorySlug)}
+                            onClick={() => handleCategoryClick(categorySlug, categoryTitle)}
                         >
                             <picture>
                                 <source media='(min-width: 1024px)' srcSet={item.image.photo2x} />

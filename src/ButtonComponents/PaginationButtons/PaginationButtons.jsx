@@ -11,7 +11,6 @@ function PaginationButtons({currentPage, totalPages, onPageChange}) {
     const halfButtons = Math.floor(MAX_BUTTONS_TO_SHOW / 2);
     let startPage = Math.max(currentPage - halfButtons, 1);
     let endPage = startPage + MAX_BUTTONS_TO_SHOW - 1;
-
     if (endPage > totalPages) {
         endPage = totalPages;
         startPage = Math.max(endPage - MAX_BUTTONS_TO_SHOW + 1, 1);
