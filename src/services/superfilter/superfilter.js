@@ -2,7 +2,7 @@ import axios from "../axios.js";
 
 
 export const superFilter = (data) => {
-    const baseUrl = '/superFilter';
+    const baseUrl = '/products/filter';
     if (!data) {
         return axios.get(baseUrl);
     }

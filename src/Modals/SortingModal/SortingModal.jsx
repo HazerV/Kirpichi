@@ -9,16 +9,16 @@ function SortingModal({ onSortChange, sort_by }) {
 
     const handleSortChange = (newSortBy) => {
         onSortChange(newSortBy);
-        set_sorting_open(false); // Закрываем окно сортировки
+        set_sorting_open(false);
     };
 
     return (
-        <>
+        <div className={styles.container}>
             <HeaderForSorting onClose={() => set_sorting_open(false)} />
-            <div className={styles.container}>
+            <div className={styles.container_sort}>
                 <SortingField onSortChange={handleSortChange} sort_by={sort_by} />
             </div>
-        </>
+        </div>
     );
 }
 export default SortingModal

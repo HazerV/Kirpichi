@@ -12,13 +12,11 @@ function HeaderForSorting() {
 
     return (
         <div className={styles.container}>
-            <div className={styles.header}>
                 <GoBackButton onClick={handleClose} />
                 <p className={styles.head_text}>
                     Сортировка
                 </p>
                 <div className={styles.empty} />
-            </div>
         </div>
     );
 }

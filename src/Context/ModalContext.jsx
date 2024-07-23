@@ -6,7 +6,7 @@ const FilterContext = React.createContext();
 function ModalContext({ children }) {
     const [is_filter_open, set_filter_open] = useState(false);
     const [is_sorting_open, set_sorting_open] = useState(false);
-    const [sort_by, setSort_by] = useState('');
+    const [sort_by, setSortBy] = useState('');
 
     return (
         <FilterContext.Provider value={{
@@ -15,7 +15,7 @@ function ModalContext({ children }) {
             is_sorting_open,
             set_sorting_open,
             sort_by,
-            setSort_by
+            setSortBy
         }}>
             {children}
         </FilterContext.Provider>
