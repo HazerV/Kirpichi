@@ -11,27 +11,42 @@ import {superFilter} from "../../services/superfilter/superfilter.js";
 import PaginationButtons from "../../ButtonComponents/PaginationButtons/PaginationButtons.jsx";
 import Header from "../../HeaderComponents/Header/Header.jsx";
 import CleanFilter from "../../BlockComponents/Filter/CleanFilter/CleanFilter.jsx";
+import {getByCategoryId} from "../../services/categories/categories.js";
 
 function CategoryPage() {
 
     const {is_filter_open, is_sorting_open, set_sorting_open, sortBy, setSortBy} = useContext(FilterContext);
     const location = useLocation();
     const navigate = useNavigate();
-    const {categorySlug} = useParams();
     const {categoryTitle} = useLocation().state || {};
-
     const [isFilterOrSortingOpen, setIsFilterOrSortingOpen] = useState(false);
     const [products, setProducts] = useState([]);
     const [totalProducts, setTotalProducts] = useState(0);
     const [minPrice, setMinPrice] = useState(0);
     const [maxPrice, setMaxPrice] = useState(0);
     const itemsPerPage = 30;
-
     const currentPage = parseInt(new URLSearchParams(location.search).get('page')) || 1;
     const minPriceParam = parseInt(new URLSearchParams(location.search).get('min_price')) || undefined;
     const maxPriceParam = parseInt(new URLSearchParams(location.search).get('max_price')) || undefined;
     const [aggregatedAttributes, setAggregatedAttributes] = useState({});
     const [selectedAttributes, setSelectedAttributes] = useState({});
+    const {categorySlug} = useParams();
+    const [categoryId, setCategoryId] = useState(null);
+    useEffect(() => {
+        const fetchCategoryId = async () => {
+            try {
+                const response = await getByCategoryId(categorySlug);
+                console.log('here', response)
+                if (response.data.status === "ok") {
+                    setCategoryId(response.data.category.id);
+                }
+            } catch (error) {
+                console.error('Ошибка получения ID категории', error);
+            }
+        };
+        fetchCategoryId();
+    }, [categorySlug]);
+    console.dir(categorySlug)
 
     const fetchProducts = async () => {
         try {
@@ -44,12 +59,13 @@ function CategoryPage() {
                 min_price: searchParams.get('min_price'),
                 max_price: searchParams.get('max_price'),
                 sort_by: searchParams.get('sort_by'),
-                // attributes: sea
+                attributes: categoryId ? {
+                    "category_id": [categoryId]
+                } : {},
                 ...Object.fromEntries(searchParams.entries()),
             };
             const response = await superFilter(params);
-            // console.log(params)
-            console.log(response.data.res)
+            console.log(params.attributes)
             setAggregatedAttributes(response.data.res.aggregated_attributes);
             setProducts(response.data.res.products);
             setTotalProducts(response.data.res.products_total);
@@ -60,6 +76,12 @@ function CategoryPage() {
             console.error('Ошибка получения продуктов', error);
         }
     };
+    useEffect(() => {
+        if (categoryId) {
+            fetchProducts();
+        }
+    }, [categoryId, categorySlug, currentPage, minPriceParam, maxPriceParam, location.search]);
+
     useEffect(() => {
         const isFilterOrSortingOpen = Object.values(selectedAttributes).some(value => value !== undefined) || sortBy !== null;
         setIsFilterOrSortingOpen(isFilterOrSortingOpen);

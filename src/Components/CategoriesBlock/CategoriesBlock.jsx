@@ -62,7 +62,6 @@ function CategoriesBlock() {
                                 }
                             )
                         }
-
                     </div>
                 )
             }
