@@ -4,6 +4,7 @@ import styles from './filter_buttons_field.module.scss'
 import React from "react";
 import {FilterContext} from "../../Context/ModalContext.jsx";
 function FilterButtonsField () {
+
     const {is_filter_open, set_filter_open, is_sorting_open, set_sorting_open} = React.useContext(FilterContext)
     function filter_view_handler () {
         if (is_filter_open === false ) {

@@ -14,6 +14,8 @@ import CleanFilter from "../../BlockComponents/Filter/CleanFilter/CleanFilter.js
 import {getByCategoryId} from "../../services/categories/categories.js";
 
 function CategoryPage() {
+    const [loading, setLoading] = useState(true);
+
 
     const {is_filter_open, is_sorting_open, set_sorting_open, sortBy, setSortBy} = useContext(FilterContext);
     const location = useLocation();
@@ -32,11 +34,11 @@ function CategoryPage() {
     const [selectedAttributes, setSelectedAttributes] = useState({});
     const {categorySlug} = useParams();
     const [categoryId, setCategoryId] = useState(null);
+
     useEffect(() => {
         const fetchCategoryId = async () => {
             try {
                 const response = await getByCategoryId(categorySlug);
-                console.log('here', response)
                 if (response.data.status === "ok") {
                     setCategoryId(response.data.category.id);
                 }
@@ -46,7 +48,6 @@ function CategoryPage() {
         };
         fetchCategoryId();
     }, [categorySlug]);
-    console.dir(categorySlug)
 
     const fetchProducts = async () => {
         try {
@@ -65,17 +66,18 @@ function CategoryPage() {
                 ...Object.fromEntries(searchParams.entries()),
             };
             const response = await superFilter(params);
-            console.log(params.attributes)
             setAggregatedAttributes(response.data.res.aggregated_attributes);
             setProducts(response.data.res.products);
             setTotalProducts(response.data.res.products_total);
             setMinPrice(response.data.res.min_price);
             setMaxPrice(response.data.res.max_price);
-
+            setLoading(false);
         } catch (error) {
             console.error('Ошибка получения продуктов', error);
+            setLoading(false);
         }
     };
+
     useEffect(() => {
         if (categoryId) {
             fetchProducts();
@@ -95,6 +97,7 @@ function CategoryPage() {
         setSelectedAttributes(selectedAttributesFromURL);
         fetchProducts();
     }, [categorySlug, currentPage, minPriceParam, maxPriceParam, location.search]);
+
     const handlePageChange = (pageNumber) => {
         const params = new URLSearchParams(location.search);
         params.set('page', pageNumber);
@@ -134,7 +137,6 @@ function CategoryPage() {
         if (minPriceParam) params.set('min_price', minPriceParam);
         if (maxPriceParam) params.set('max_price', maxPriceParam);
         if (sortBy) params.set('sort_by', sortBy);
-
         Object.entries(newSelectedAttributes).forEach(([name, value]) => {
             if (value) params.set(name, value);
         });
@@ -164,7 +166,7 @@ function CategoryPage() {
         }
     };
 
-    if (is_filter_open === true) {
+    if (is_filter_open) {
         return (
             <FilterModal
                 data={{
@@ -179,58 +181,41 @@ function CategoryPage() {
         );
     }
 
-    if (is_sorting_open === true) {
+    if (is_sorting_open) {
         return (
             <SortingModal onSortChange={handleSortChange} sortBy={sortBy}/>
         );
     }
+
     const sortedProducts = [...products].sort(sortProducts);
+
     return (
         <>
             <Header/>
             <div className={styles.pad_bot16}>
                 <FilterButtonsField/>
             </div>
-            {/*{*/}
-            {/*    isFilterOrSortingOpen && (*/}
-            {/*        <div className={styles.pad_bot16}>*/}
-            {/*            <CleanFilter*/}
-            {/*                selectedAttributes={selectedAttributes}*/}
-            {/*                onClearFilters={() => {*/}
-            {/*                    const params = new URLSearchParams(location.search);*/}
-            {/*                    params.delete('page');*/}
-            {/*                    params.delete('min_price');*/}
-            {/*                    params.delete('max_price');*/}
-            {/*                    params.delete('sortBy');*/}
-            {/*                    Object.keys(selectedAttributes).forEach(key => params.delete(key));*/}
-            {/*                    navigate(`/categories/${categorySlug}?${params.toString()}`);*/}
-            {/*                    setSelectedAttributes({});*/}
-            {/*                    setSortBy(null);*/}
-            {/*                }}*/}
-            {/*            />*/}
-            {/*        </div>*/}
-            {/*    )*/}
-            {/*}*/}
             <div className={styles.block}>
-                <div className={styles.block}>
-                    {
-                        Array.isArray(sortedProducts) && sortedProducts.map((product, index) => (
-                            <ItemComponents
-                                {...product}
-                                image={product.images.photo}
-                                photo2x={product.images.photo2x}
-                                description={product.model}
-                                surface={product.template}
-                                size={product.quantity}
-                                color={product.model}
-                                key={index}
-                                href={`/product/${product.id}`}
-                                name={product.name}
-                                price={product.price}
-                            />
-                        ))
-                    }
-                </div>
+                {
+                    loading ? (
+                    <div>Loading</div>
+                ) : (
+                    sortedProducts.map((product, index) => (
+                        <ItemComponents
+                            {...product}
+                            image={product.images.photo}
+                            photo2x={product.images.photo2x}
+                            description={product.model}
+                            surface={product.template}
+                            size={product.quantity}
+                            color={product.model}
+                            key={index}
+                            href={`/product/${product.id}`}
+                            name={product.name}
+                            price={product.price}
+                        />
+                    ))
+                )}
             </div>
             <div className={styles.pad_bot16}>
                 <PaginationButtons
@@ -244,5 +229,4 @@ function CategoryPage() {
         </>
     );
 }
-
 export default CategoryPage
