@@ -17,6 +17,6 @@ export async function getProductById (slug) {
     return axios.get(`/products/getById?slug=${slug}`)
 }
 
-export async function getById (id) {
-    return await axios.get(`/products/get?id=${id}`)
+export async function getById (slug) {
+    return await axios.get(`/products/get?slug=${slug}`)
 }

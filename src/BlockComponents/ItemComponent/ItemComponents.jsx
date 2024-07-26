@@ -10,7 +10,6 @@ function ItemComponents({name, image, photo2x, description, surface, size, color
         const timer = setTimeout(() => {
             setLoading(false);
         }, 2000);
-
         return () => clearTimeout(timer);
     }, []);
 

@@ -9,13 +9,15 @@ function CategoriesBlock() {
     const navigate = useNavigate();
     const [mesh, setMesh] = useState([]);
     const [loading, setLoading] = useState(true)
-
     useEffect(() => {
         getMesh()
             .then((res) => {
                 if (res.data.status === 'ok') {
                     setMesh(res.data.banners);
-                    setLoading(false)
+                    const timer = setTimeout(() => {
+                        setLoading(false)
+                    }, 2000)
+                    return () => clearTimeout(timer)
                 }
             })
     }, []);
@@ -31,7 +33,7 @@ function CategoriesBlock() {
             </p>
             {
                 loading === true ? (
-                    <div className={styles.align_images}>
+                    <div className={styles.align_skeleton}>
                         <Skeleton className={styles.image} width='182px' height='182px'></Skeleton>
                         <Skeleton className={styles.image} width='182px' height='182px'></Skeleton>
                         <Skeleton className={styles.image} width='182px' height='182px'></Skeleton>

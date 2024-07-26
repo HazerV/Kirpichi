@@ -39,7 +39,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
                         <Route path='/about' element={<AboutPage/>}/>
                         <Route path='/producers' element={<ProducersPage/>}/>
                         <Route path='/category' element={<CategoryPage/>}/>
-                        <Route path='/product/:productId' element={<ProductPage/>}/>
+                        <Route path="/product/:productSlug" element={<ProductPage />} />
                         <Route path='/sendRequest' element={<SendRequestPage/>}/>
                     </Routes>
                 </ModalContext>

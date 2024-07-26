@@ -1,29 +1,24 @@
 import SortingButton from "./SortingButton/SortingButton.jsx";
 import FilterButton from "./FilterButton/FilterButton.jsx";
 import styles from './filter_buttons_field.module.scss'
-import React from "react";
-import {FilterContext} from "../../Context/ModalContext.jsx";
-function FilterButtonsField () {
+import { useContext } from "react";
+import { FilterContext } from "../../Context/ModalContext.jsx";
 
-    const {is_filter_open, set_filter_open, is_sorting_open, set_sorting_open} = React.useContext(FilterContext)
-    function filter_view_handler () {
-        if (is_filter_open === false ) {
-            set_filter_open(true)
-        } else {
-            set_filter_open(false)
-        }
+function FilterButtonsField() {
+    const { is_filter_open, set_filter_open, is_sorting_open, set_sorting_open, sortBy } = useContext(FilterContext);
+
+    function filter_view_handler() {
+        set_filter_open(!is_filter_open);
     }
-    function sorting_view_handler () {
-        if (is_sorting_open === false) {
-            set_sorting_open(true)
-        } else {
-            set_sorting_open(false)
-        }
+
+    function sorting_view_handler() {
+        set_sorting_open(!is_sorting_open);
     }
+
     return (
         <div className={styles.container}>
             <div onClick={sorting_view_handler}>
-                <SortingButton />
+                <SortingButton sortBy={sortBy} />
             </div>
             <div onClick={filter_view_handler}>
                 <FilterButton />
@@ -32,4 +27,4 @@ function FilterButtonsField () {
     )
 }
 
-export default FilterButtonsField
+export default FilterButtonsField;

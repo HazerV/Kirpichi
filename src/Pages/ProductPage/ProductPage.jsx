@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {useParams} from 'react-router-dom';
-import {getById} from '../../services/products/products';
+import {getById} from "../../services/products/products.js";
 import styles from './product_page.module.scss';
 import HistoriesBLock from "../../Components/HistoriesBlock/HistoriesBLock.jsx";
 import HeaderProduct from "../../HeaderComponents/HeaderProduct/HeaderProduct.jsx";
@@ -13,12 +13,12 @@ import MainFooter from "../../Components/MainFooter/MainFooter.jsx";
 
 function ProductPage() {
     const [product, setProduct] = useState(null);
-    const {productId} = useParams();
+    const {productSlug} = useParams();
 
     useEffect(() => {
         const fetchProduct = async () => {
             try {
-                const response = await getById(productId);
+                const response = await getById(productSlug);
                 setProduct(response.data);
             } catch (error) {
                 console.error('Error fetching product:', error);
@@ -26,11 +26,12 @@ function ProductPage() {
         };
 
         fetchProduct();
-    }, [productId]);
+    }, [productSlug]);
 
     if (!product) {
         return <div>Loading...</div>;
     }
+
     return (
         <div>
             <div className={styles.container}>
@@ -53,7 +54,7 @@ function ProductPage() {
                 <div className={styles.pad_bot}>
                     {
                         product.similar_products.map((i, index) =>
-                            <SimilarProducts route={`/product/${i.id}`} name={i.name} key={index}/>
+                            <SimilarProducts route={`/product/${i.slug}`} name={i.name} key={index}/> // Используем slug вместо id
                         )
                     }
                 </div>
@@ -67,11 +68,12 @@ function ProductPage() {
                             Характеристики
                         </p>
                     )
-                } {
-                product.attributes.map((i, index) =>
-                    <CharacteristicsBlock text={i.value} name={i.name} key={index}/>
-                )
-            }
+                }
+                {
+                    product.attributes.map((i, index) =>
+                        <CharacteristicsBlock text={i.value} name={i.name} key={index}/>
+                    )
+                }
             </div>
             <div className={styles.pad_top}>
                 <MainFooter/>
