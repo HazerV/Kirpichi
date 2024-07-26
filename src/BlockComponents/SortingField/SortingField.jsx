@@ -10,7 +10,7 @@ function SortingField({ onSortChange, sortBy }) {
         <div className={styles.container}>
             <p
                 onClick={() => handleSortChange('popular_asc')}
-                className={sortBy === 'popular_asc' ? styles.text_active : styles.text_non_active}
+                className={sortBy === 'popular_desc' ? styles.text_active : styles.text_non_active}
             >
                 По популярности
             </p>

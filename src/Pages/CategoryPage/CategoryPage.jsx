@@ -30,7 +30,6 @@ function CategoryPage() {
     } = useCategoryPage();
     const {categoryTitle} = useLocation().state || {};
     const totalPages = Math.ceil(totalProducts / itemsPerPage);
-
     if (is_filter_open) {
         return (
             <FilterModal
@@ -46,7 +45,7 @@ function CategoryPage() {
         );
     }
 
-    if (is_sorting_open) {
+    if (is_sorting_open === true) {
         return (
             <SortingModal onSortChange={handleSortChange} sortBy={sortBy}/>
         );

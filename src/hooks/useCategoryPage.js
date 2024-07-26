@@ -16,6 +16,7 @@ export function useCategoryPage() {
     const [aggregatedAttributes, setAggregatedAttributes] = useState({});
     const [selectedAttributes, setSelectedAttributes] = useState({});
     const [categoryId, setCategoryId] = useState(null);
+    const [productsCount, setProductsCount] = useState(0)
 
     const itemsPerPage = 30;
     const currentPage = parseInt(new URLSearchParams(location.search).get('page')) || 1;
@@ -24,6 +25,7 @@ export function useCategoryPage() {
         const fetchCategoryId = async () => {
             try {
                 const response = await getByCategoryId(categorySlug);
+
                 if (response.data.status === "ok") {
                     setCategoryId(response.data.category.id);
                 }
@@ -33,7 +35,6 @@ export function useCategoryPage() {
         };
         fetchCategoryId();
     }, [categorySlug]);
-
     const fetchProducts = async () => {
         try {
             const offset = (currentPage - 1) * itemsPerPage;
@@ -57,6 +58,7 @@ export function useCategoryPage() {
             });
 
             const response = await superFilter(params);
+            setProductsCount(response.data.res.products_total)
             setAggregatedAttributes(response.data.res.aggregated_attributes);
             setProducts(response.data.res.products);
             setTotalProducts(response.data.res.products_total);
@@ -79,6 +81,7 @@ export function useCategoryPage() {
         const searchParams = new URLSearchParams(location.search);
         const newSelectedAttributes = {};
         const newSortBy = searchParams.get('sort_by') || '';
+
         for (const [key, value] of searchParams.entries()) {
             if (key !== 'page' && key !== 'min_price' && key !== 'max_price' && key !== 'sort_by') {
                 newSelectedAttributes[key] = value;
@@ -132,6 +135,7 @@ export function useCategoryPage() {
     };
 
     return {
+        productsCount,
         loading,
         products,
         totalProducts,
