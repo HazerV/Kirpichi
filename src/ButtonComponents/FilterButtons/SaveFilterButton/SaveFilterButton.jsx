@@ -1,13 +1,13 @@
-import styles from './save_filter_button.module.scss'
-import React from "react";
-import {FilterContext} from "../../../Context/ModalContext.jsx";
+import styles from './save_filter_button.module.scss';
+import React from 'react';
+import { FilterContext } from '../../../Context/ModalContext.jsx';
 
-function SaveFilterButton () {
+function SaveFilterButton({ onSave }) {
+    const { set_filter_open } = React.useContext(FilterContext);
 
-    const {set_filter_open} = React.useContext(FilterContext)
-
-    function close_filter () {
-        set_filter_open(false)
+    function close_filter() {
+        set_filter_open(false);
+        onSave();  // Вызываем функцию для сохранения фильтров и обновления URL
     }
 
     return (
@@ -16,7 +16,7 @@ function SaveFilterButton () {
                 Применить фильтр
             </p>
         </div>
-    )
+    );
 }
 
-export default SaveFilterButton
+export default SaveFilterButton;

@@ -1,18 +1,18 @@
-import React, {useContext} from 'react';
+import React, { useContext } from 'react';
 import styles from './category_page.module.scss';
-import {FilterContext} from '../../Context/ModalContext';
+import { FilterContext } from '../../Context/ModalContext';
 import MainFooter from '../../Components/MainFooter/MainFooter';
 import FilterButtonsField from '../../ButtonComponents/FilterButtons/FilterButtonsField';
 import FilterModal from '../../Modals/FIlterModal/FilterModal';
 import SortingModal from '../../Modals/SortingModal/SortingModal';
 import PaginationButtons from '../../ButtonComponents/PaginationButtons/PaginationButtons';
 import Header from '../../HeaderComponents/Header/Header';
-import {useCategoryPage} from "../../hooks/useCategoryPage.js";
+import { useCategoryPage } from "../../hooks/useCategoryPage.js";
 import ProductList from "../../Components/ProductsList/ProductList.jsx";
-import {useLocation} from "react-router-dom";
+import { useLocation } from "react-router-dom";
 
 function CategoryPage() {
-    const {is_filter_open, is_sorting_open, sortBy} = useContext(FilterContext);
+    const { is_filter_open, is_sorting_open, sortBy } = useContext(FilterContext);
     const {
         loading,
         products,
@@ -28,8 +28,9 @@ function CategoryPage() {
         handlePriceChange,
         handleAttributeChange,
     } = useCategoryPage();
-    const {categoryTitle} = useLocation().state || {};
+    const { categoryTitle } = useLocation().state || {};
     const totalPages = Math.ceil(totalProducts / itemsPerPage);
+
     if (is_filter_open) {
         return (
             <FilterModal
@@ -45,7 +46,7 @@ function CategoryPage() {
         );
     }
 
-    if (is_sorting_open === true) {
+    if (is_sorting_open) {
         return (
             <SortingModal onSortChange={handleSortChange} sortBy={sortBy}/>
         );

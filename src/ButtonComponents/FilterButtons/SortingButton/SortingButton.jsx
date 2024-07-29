@@ -5,9 +5,9 @@ function SortingButton({ sortBy }) {
     const getSortText = (sortBy) => {
         switch(sortBy) {
             case 'price_asc':
-                return 'По возрастанию цены';
+                return 'Сначала дешевле';
             case 'price_desc':
-                return 'По убыванию цены';
+                return 'Сначала дороже';
             default:
                 return 'По популярности';
         }

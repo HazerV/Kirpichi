@@ -9,6 +9,18 @@ import {useLocation, useNavigate, useParams} from "react-router-dom";
 function FilterModal({ data, onPriceChange, onAttributeChange, selectedAttributes }) {
     const location = useLocation();
     const navigate = useNavigate();
+    const { categorySlug } = useParams();
+
+    const handleSaveFilters = () => {
+        const params = new URLSearchParams(location.search);
+        params.set('page', 1);
+        if (data.min_price !== null) params.set('min_price', data.min_price);
+        if (data.max_price !== null) params.set('max_price', data.max_price);
+        Object.entries(selectedAttributes).forEach(([name, value]) => {
+            if (value) params.set(name, value);
+        });
+        navigate(`/categories/${categorySlug}?${params.toString()}`);
+    };
 
     const handlePriceChange = (newPriceRange) => {
         onPriceChange(newPriceRange);
@@ -19,7 +31,6 @@ function FilterModal({ data, onPriceChange, onAttributeChange, selectedAttribute
         onAttributeChange(attributeName, attributeValue);
         updateURL(null, null, { ...selectedAttributes, [attributeName]: attributeValue });
     };
-    const {categorySlug} = useParams();
 
     const updateURL = (newMinPrice, newMaxPrice, newSelectedAttributes) => {
         const params = new URLSearchParams(location.search);
@@ -53,7 +64,7 @@ function FilterModal({ data, onPriceChange, onAttributeChange, selectedAttribute
                     ))
                 }
             </div>
-            <SaveFilterButton />
+            <SaveFilterButton onSave={handleSaveFilters} />
         </div>
     );
 }
