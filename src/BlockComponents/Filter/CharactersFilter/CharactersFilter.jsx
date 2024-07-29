@@ -4,7 +4,7 @@ import StatusIndicator from "./StatusIndicator/StatusIndicator.jsx";
 import UpSvg from '../../../assets/icons/Up.svg';
 import DownSvg from '../../../assets/icons/Down.svg';
 
-function CharactersFilter({text, values, selectedValue, onAttributeChange}) {
+function CharactersFilter({ text, values, selectedValue, onAttributeChange }) {
     const [open, setOpen] = React.useState(false);
 
     function handleClick() {
@@ -19,7 +19,7 @@ function CharactersFilter({text, values, selectedValue, onAttributeChange}) {
         <div className={styles.container}>
             <div onClick={handleClick} className={styles.head_align}>
                 <p className={styles.head_text}>{text}</p>
-                <img src={open ? UpSvg : DownSvg} alt="Arrow"/>
+                <img src={open ? UpSvg : DownSvg} alt="Arrow" />
             </div>
             {
                 open && (

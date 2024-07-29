@@ -5,12 +5,11 @@ import { useContext } from "react";
 import { FilterContext } from "../../Context/ModalContext.jsx";
 
 function FilterButtonsField() {
-    const { is_filter_open, set_filter_open, is_sorting_open, set_sorting_open, sortBy } = useContext(FilterContext);
 
+    const { is_filter_open, set_filter_open, is_sorting_open, set_sorting_open, sortBy } = useContext(FilterContext);
     function filter_view_handler() {
         set_filter_open(!is_filter_open);
     }
-
     function sorting_view_handler() {
         set_sorting_open(!is_sorting_open);
     }

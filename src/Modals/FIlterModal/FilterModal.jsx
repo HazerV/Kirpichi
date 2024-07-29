@@ -4,12 +4,13 @@ import HeaderForFilter from "../../HeaderComponents/HeaderForFilter/HeaderForFil
 import PriceFilter from "../../BlockComponents/Filter/PriceFilter/PriceFilter.jsx";
 import CharactersFilter from "../../BlockComponents/Filter/CharactersFilter/CharactersFilter.jsx";
 import SaveFilterButton from "../../ButtonComponents/FilterButtons/SaveFilterButton/SaveFilterButton.jsx";
-import {useLocation, useNavigate, useParams} from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 
 function FilterModal({ data, onPriceChange, onAttributeChange, selectedAttributes }) {
     const location = useLocation();
     const navigate = useNavigate();
     const { categorySlug } = useParams();
+    console.log(selectedAttributes);
 
     const handleSaveFilters = () => {
         const params = new URLSearchParams(location.search);
@@ -17,7 +18,7 @@ function FilterModal({ data, onPriceChange, onAttributeChange, selectedAttribute
         if (data.min_price !== null) params.set('min_price', data.min_price);
         if (data.max_price !== null) params.set('max_price', data.max_price);
         Object.entries(selectedAttributes).forEach(([name, value]) => {
-            if (value) params.set(name, value);
+            if (value !== null) params.set(name, value);
         });
         navigate(`/categories/${categorySlug}?${params.toString()}`);
     };

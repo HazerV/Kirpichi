@@ -61,7 +61,7 @@ function CategoryPage() {
             <div className={styles.block}>
                 {
                     loading ? (
-                        <div>Loading</div>
+                        <div> Loading </div>
                     ) : (
                         <ProductList products={products}/>
                     )
