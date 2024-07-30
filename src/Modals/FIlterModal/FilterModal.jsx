@@ -1,4 +1,3 @@
-import React from "react";
 import styles from './filter_modal.module.scss';
 import HeaderForFilter from "../../HeaderComponents/HeaderForFilter/HeaderForFilter.jsx";
 import PriceFilter from "../../BlockComponents/Filter/PriceFilter/PriceFilter.jsx";
@@ -7,6 +6,7 @@ import SaveFilterButton from "../../ButtonComponents/FilterButtons/SaveFilterBut
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 
 function FilterModal({ data, onPriceChange, onAttributeChange, selectedAttributes }) {
+
     const location = useLocation();
     const navigate = useNavigate();
     const { categorySlug } = useParams();

@@ -9,8 +9,8 @@ function SortingField({ onSortChange, sortBy }) {
     return (
         <div className={styles.container}>
             <p
-                onClick={() => handleSortChange('popular_asc')}
-                className={sortBy === 'popular_desc' ? styles.text_active : styles.text_non_active}
+                onClick={() => handleSortChange('popularity_desc')}
+                className={sortBy === 'popularity_desc' ? styles.text_active : styles.text_non_active}
             >
                 По популярности
             </p>
@@ -25,6 +25,12 @@ function SortingField({ onSortChange, sortBy }) {
                 className={sortBy === 'price_asc' ? styles.text_active : styles.text_non_active}
             >
                 Сначала дешевле
+            </p>
+            <p
+                onClick={() => handleSortChange('newness_desc')}
+                className={sortBy === 'newness_desc' ? styles.text_active : styles.text_non_active}
+            >
+                По новизне
             </p>
         </div>
     );

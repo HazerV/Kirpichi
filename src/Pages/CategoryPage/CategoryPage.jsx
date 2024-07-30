@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import { useContext } from 'react';
 import styles from './category_page.module.scss';
 import { FilterContext } from '../../Context/ModalContext';
 import MainFooter from '../../Components/MainFooter/MainFooter';

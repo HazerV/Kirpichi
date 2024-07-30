@@ -39,7 +39,7 @@ export function useCategoryPage() {
         if (categoryId) {
             fetchProducts();
         }
-    }, [categoryId, categorySlug, currentPage, location.search, sortBy]);
+    }, [categoryId, categorySlug, currentPage, location.search, sortBy, selectedAttributes]);
 
     useEffect(() => {
         const searchParams = new URLSearchParams(location.search);
@@ -97,13 +97,12 @@ export function useCategoryPage() {
         navigate(`/categories/${categorySlug}?${params.toString()}`);
     };
 
-
     const fetchProducts = async () => {
         try {
             const offset = (currentPage - 1) * itemsPerPage;
             const searchParams = new URLSearchParams(location.search);
             const params = {
-                categories_id: [categorySlug],
+                categories_id: [categoryId],
                 limit: itemsPerPage,
                 offset: offset,
                 min_price: searchParams.get('min_price'),
@@ -134,12 +133,11 @@ export function useCategoryPage() {
         }
     };
 
-
     useEffect(() => {
         if (categoryId) {
             fetchProducts();
         }
-    }, [categoryId, categorySlug, currentPage, location.search, sortBy]);
+    }, [categoryId, categorySlug, currentPage, location.search, sortBy, selectedAttributes]);
 
     return {
         productsCount,

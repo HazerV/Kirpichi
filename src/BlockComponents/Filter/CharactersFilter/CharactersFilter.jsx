@@ -26,7 +26,7 @@ function CharactersFilter({ text, values, selectedValue, onAttributeChange }) {
                     <div className={styles.options}>
                         {
                             Object.entries(values).map(([value, count]) => (
-                                <div key={value} className={styles.align}>
+                                <div key={value} className={styles.align} onClick={() => handleAttributeChange(value)}>
                                     <StatusIndicator
                                         checked={selectedValue === value}
                                         onChange={() => handleAttributeChange(value)}

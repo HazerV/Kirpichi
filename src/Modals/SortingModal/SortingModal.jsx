@@ -7,7 +7,6 @@ import {FilterContext} from "../../Context/ModalContext.jsx";
 function SortingModal({ onSortChange, sort_by }) {
 
     const { set_sorting_open } = useContext(FilterContext);
-
     const handleSortChange = (newSortBy) => {
         onSortChange(newSortBy);
         set_sorting_open(false);
