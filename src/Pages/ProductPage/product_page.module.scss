@@ -18,12 +18,14 @@
 .slider {
   align-items: center;
   justify-content: center;
-  @media screen and (min-width: 580px) {
-    //display: flex;
-    max-width: 500px;
-    align-items: center;
-    justify-content: center;
-  }
+  width: 100%;
+
+  //@media screen and (min-width: 580px) {
+  //  //display: flex;
+  //  max-width: 500px;
+  //  align-items: center;
+  //  justify-content: center;
+  //}
 }
 
 .pad_bot {

@@ -15,7 +15,7 @@ import ProductPage from "./Pages/ProductPage/ProductPage.jsx";
 import SendRequestPage from "./Pages/SendRequestPage/SendRequestPage.jsx";
 import {ModalContext} from "./Context/ModalContext.jsx";
 import {PrimeReactProvider} from "primereact/api";
-
+import {FilterSaveProvider} from "./Context/FilterSave.jsx";
 import "primereact/resources/themes/lara-light-cyan/theme.css";
 import 'primeflex/primeflex.css';
 import 'primereact/resources/primereact.css';
@@ -28,21 +28,23 @@ ReactDOM.createRoot(document.getElementById("root")).render(
     <React.StrictMode>
         <PrimeReactProvider>
             <BrowserRouter>
-                <ModalContext>
-                    <Routes>
-                        <Route path='*' element={<ErrorPage/>}/>
-                        <Route path='/' element={<HomePage/>}/>
-                        <Route path='/categories/:categorySlug' element={<CategoryPage/>}/>
-                        <Route path='/contacts' element={<ContactsPage/>}/>
-                        <Route path='/histories' element={<HistoriesPage/>}/>
-                        <Route path='/delivery' element={<DeliveryPage/>}/>
-                        <Route path='/about' element={<AboutPage/>}/>
-                        <Route path='/producers' element={<ProducersPage/>}/>
-                        <Route path='/category' element={<CategoryPage/>}/>
-                        <Route path="/product/:productSlug" element={<ProductPage />} />
-                        <Route path='/sendRequest' element={<SendRequestPage/>}/>
-                    </Routes>
-                </ModalContext>
+                <FilterSaveProvider>
+                    <ModalContext>
+                        <Routes>
+                            <Route path='*' element={<ErrorPage/>}/>
+                            <Route path='/' element={<HomePage/>}/>
+                            <Route path='/categories/:categorySlug' element={<CategoryPage/>}/>
+                            <Route path='/contacts' element={<ContactsPage/>}/>
+                            <Route path='/histories' element={<HistoriesPage/>}/>
+                            <Route path='/delivery' element={<DeliveryPage/>}/>
+                            <Route path='/about' element={<AboutPage/>}/>
+                            <Route path='/producers' element={<ProducersPage/>}/>
+                            <Route path='/category' element={<CategoryPage/>}/>
+                            <Route path="/product/:productSlug" element={<ProductPage/>}/>
+                            <Route path='/sendRequest' element={<SendRequestPage/>}/>
+                        </Routes>
+                    </ModalContext>
+                </FilterSaveProvider>
             </BrowserRouter>
         </PrimeReactProvider>
 

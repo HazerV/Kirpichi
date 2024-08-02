@@ -17,7 +17,7 @@ function MapField() {
                 </p>
                 <YMaps>
                     <div className={styles.map}>
-                        <Map width={'100%'} defaultState={{center: [51.719544, 55.143084], zoom: 16}}>
+                        <Map width={'100%'} height={'100%'} defaultState={{center: [51.719544, 55.143084], zoom: 16}}>
                             <Placemark geometry={[51.719544, 55.143084]}/>
                         </Map>
                     </div>

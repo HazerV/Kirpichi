@@ -23,6 +23,9 @@
 
 .map {
   border-radius: 13px;
+  @media (min-width: 520px) {
+    height: 500px
+  }
 }
 
 .buttons {

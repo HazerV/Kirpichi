@@ -1,29 +1,12 @@
-import styles from './status_indicator.module.scss'
-import {useState} from "react";
+import styles from './status_indicator.module.scss';
 
-function StatusIndicator ({status}) {
+function StatusIndicator({ checked, onChange }) {
 
-    const [is_active, setActive] = useState(false)
-    function handleClick () {
-        if (is_active === true) {
-            setActive(false)
-        } else {
-            setActive(true)
-        }
-    }
-
-    if (is_active === true) {
-        return (
-            <div onClick={handleClick} className={styles.container_active}>
-                <div className={styles.inside} />
-            </div>
-        )
-    } else if (is_active === false) {
-        return (
-            <div onClick={handleClick} className={styles.container_non_active} />
-        )
-    }
-
+    return (
+        <div onClick={onChange} className={checked ? styles.container_active : styles.container_non_active}>
+            {checked && <div className={styles.inside} />}
+        </div>
+    );
 }
 
-export default StatusIndicator
+export default StatusIndicator;

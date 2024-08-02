@@ -1,18 +1,21 @@
+
 import React from "react";
 import styles from './characters_filter.module.scss';
 import StatusIndicator from "./StatusIndicator/StatusIndicator.jsx";
 import UpSvg from '../../../assets/icons/Up.svg';
 import DownSvg from '../../../assets/icons/Down.svg';
+import {useFilterSave} from "../../../Context/FilterSave.jsx";
 
-function CharactersFilter({ text, values, selectedValue, onAttributeChange }) {
+function CharactersFilter({ text, values, selectedValue }) {
     const [open, setOpen] = React.useState(false);
+    const { toggleAttribute } = useFilterSave();
 
     function handleClick() {
         setOpen(!open);
     }
 
     function handleAttributeChange(value) {
-        onAttributeChange(value === selectedValue ? undefined : value);
+        toggleAttribute(text, value);
     }
 
     return (

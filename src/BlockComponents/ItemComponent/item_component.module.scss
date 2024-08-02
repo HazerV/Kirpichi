@@ -19,6 +19,12 @@
   border-color: #EBE7E3;
   border-width: 2px;
 }
+.image:hover {
+  border: 1px solid #89242B;
+  transition: 0.1s;
+  transform: translateY(1px);
+  box-shadow: 1px -1px 8px 1px rgba(0, 0, 0, 0.5), 0px 2px 1px rgba(0, 0, 0, 0.1), 0px 4px 2px rgba(0, 0, 0, 0.1), 0px 6px 6px rgba(0, 0, 0, 0.1);
+}
 
 p {
   color: black;

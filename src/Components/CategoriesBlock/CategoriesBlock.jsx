@@ -31,17 +31,6 @@ function CategoriesBlock() {
             <p className={styles.text}>
                 Категории
             </p>
-            {
-                loading === true ? (
-                    <div className={styles.align_skeleton}>
-                        <Skeleton className={styles.image} width='182px' height='182px'></Skeleton>
-                        <Skeleton className={styles.image} width='182px' height='182px'></Skeleton>
-                        <Skeleton className={styles.image} width='182px' height='182px'></Skeleton>
-                        <Skeleton className={styles.image} width='182px' height='182px'></Skeleton>
-                        <Skeleton className={styles.image} width='182px' height='182px'></Skeleton>
-                        <Skeleton className={styles.image} width='182px' height='182px'></Skeleton>
-                    </div>
-                ) : (
                     <div className={styles.align_images}>
                         {
                             mesh.map((item, index) => {
@@ -65,9 +54,6 @@ function CategoriesBlock() {
                             )
                         }
                     </div>
-                )
-            }
-
         </div>
     )
 }

@@ -1,8 +1,9 @@
-import { useState, useEffect, useContext } from 'react';
+import { useState, useEffect, useContext, useMemo, useCallback } from 'react';
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import { FilterContext } from '../Context/ModalContext';
 import { superFilter } from "../services/superfilter/superfilter.js";
 import { getByCategoryId } from "../services/categories/categories.js";
+import debounce from 'lodash/debounce';
 
 export function useCategoryPage() {
     const [loading, setLoading] = useState(true);
@@ -21,25 +22,64 @@ export function useCategoryPage() {
     const itemsPerPage = 30;
     const currentPage = parseInt(new URLSearchParams(location.search).get('page')) || 1;
 
-    useEffect(() => {
-        const fetchCategoryId = async () => {
-            try {
-                const response = await getByCategoryId(categorySlug);
-                if (response.data.status === "ok") {
-                    setCategoryId(response.data.category.id);
-                }
-            } catch (error) {
-                console.error('Ошибка получения ID категории', error);
+    const fetchCategoryId = useCallback(async () => {
+        try {
+            const response = await getByCategoryId(categorySlug);
+            if (response.data.status === "ok") {
+                setCategoryId(response.data.category.id);
             }
-        };
-        fetchCategoryId();
+        } catch (error) {
+            console.error('Ошибка получения ID категории', error);
+        }
     }, [categorySlug]);
 
     useEffect(() => {
-        if (categoryId) {
-            fetchProducts();
+        fetchCategoryId();
+    }, [fetchCategoryId]);
+
+    const fetchProducts = useCallback(async (params) => {
+        try {
+            const response = await superFilter(params);
+            setProductsCount(response.data.res.products_total);
+            setAggregatedAttributes(response.data.res.aggregated_attributes);
+            setProducts(response.data.res.products);
+            setTotalProducts(response.data.res.products_total);
+            setMinPrice(response.data.res.min_price);
+            setMaxPrice(response.data.res.max_price);
+            setLoading(false);
+        } catch (error) {
+            console.error('Ошибка получения продуктов', error);
+            setLoading(false);
         }
-    }, [categoryId, categorySlug, currentPage, location.search, sortBy, selectedAttributes]);
+    }, []);
+
+    const debouncedFetchProducts = useMemo(
+        () => debounce(fetchProducts, 300),
+        [fetchProducts]
+    );
+
+    const requestParams = useMemo(() => {
+        const searchParams = new URLSearchParams(location.search);
+        const offset = (currentPage - 1) * itemsPerPage;
+        return {
+            categories_id: categoryId ? [categoryId] : [],
+            limit: itemsPerPage,
+            offset: offset,
+            min_price: searchParams.get('min_price'),
+            max_price: searchParams.get('max_price'),
+            sort_by: sortBy ? [sortBy] : [],
+            attributes: {
+                ...selectedAttributes,
+                category_id: categoryId ? [categoryId] : []
+            },
+        };
+    }, [categoryId, currentPage, itemsPerPage, location.search, sortBy, selectedAttributes]);
+
+    useEffect(() => {
+        if (categoryId) {
+            debouncedFetchProducts(requestParams);
+        }
+    }, [categoryId, debouncedFetchProducts, requestParams]);
 
     useEffect(() => {
         const searchParams = new URLSearchParams(location.search);
@@ -54,30 +94,30 @@ export function useCategoryPage() {
         setSortBy(newSortBy);
     }, [location.search, setSortBy]);
 
-    const handlePageChange = (pageNumber) => {
+    const handlePageChange = useCallback((pageNumber) => {
         const params = new URLSearchParams(location.search);
         params.set('page', pageNumber);
         navigate(`/categories/${categorySlug}?${params.toString()}`);
-    };
+    }, [location.search, navigate, categorySlug]);
 
-    const handleSortChange = (newSortBy) => {
+    const handleSortChange = useCallback((newSortBy) => {
         const params = new URLSearchParams(location.search);
         params.set('page', 1);
         params.set('sort_by', newSortBy);
         navigate(`/categories/${categorySlug}?${params.toString()}`);
         setSortBy(newSortBy);
-    };
+    }, [location.search, navigate, categorySlug, setSortBy]);
 
-    const handlePriceChange = (newPriceRange) => {
+    const handlePriceChange = useCallback((newPriceRange) => {
         const [newMinPrice, newMaxPrice] = newPriceRange;
         const params = new URLSearchParams(location.search);
         params.set('page', 1);
         if (newMinPrice) params.set('min_price', newMinPrice);
         if (newMaxPrice) params.set('max_price', newMaxPrice);
         navigate(`/categories/${categorySlug}?${params.toString()}`);
-    };
+    }, [location.search, navigate, categorySlug]);
 
-    const handleAttributeChange = (attributeName, attributeValue) => {
+    const handleAttributeChange = useCallback((attributeName, attributeValue) => {
         const newSelectedAttributes = {
             ...selectedAttributes,
             [attributeName]: attributeValue,
@@ -95,49 +135,7 @@ export function useCategoryPage() {
         });
 
         navigate(`/categories/${categorySlug}?${params.toString()}`);
-    };
-
-    const fetchProducts = async () => {
-        try {
-            const offset = (currentPage - 1) * itemsPerPage;
-            const searchParams = new URLSearchParams(location.search);
-            const params = {
-                categories_id: [categoryId],
-                limit: itemsPerPage,
-                offset: offset,
-                min_price: searchParams.get('min_price'),
-                max_price: searchParams.get('max_price'),
-                sort_by: sortBy ? [sortBy] : [],
-                attributes: { "category_id": [categoryId] },
-            };
-
-            Object.entries(selectedAttributes).forEach(([key, value]) => {
-                if (value) {
-                    params.attributes[key] = [value];
-                }
-            });
-
-            console.log('Fetching products with params:', params);
-
-            const response = await superFilter(params);
-            setProductsCount(response.data.res.products_total);
-            setAggregatedAttributes(response.data.res.aggregated_attributes);
-            setProducts(response.data.res.products);
-            setTotalProducts(response.data.res.products_total);
-            setMinPrice(response.data.res.min_price);
-            setMaxPrice(response.data.res.max_price);
-            setLoading(false);
-        } catch (error) {
-            console.error('Ошибка получения продуктов', error);
-            setLoading(false);
-        }
-    };
-
-    useEffect(() => {
-        if (categoryId) {
-            fetchProducts();
-        }
-    }, [categoryId, categorySlug, currentPage, location.search, sortBy, selectedAttributes]);
+    }, [selectedAttributes, location.search, navigate, categorySlug]);
 
     return {
         productsCount,

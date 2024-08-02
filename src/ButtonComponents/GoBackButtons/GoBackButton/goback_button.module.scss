@@ -4,6 +4,10 @@
   border-width: 0;
   background-color: #EBE7E3;
   border-radius: 3px;
+  cursor: grab;
+}
+.container:hover {
+  border: 1px solid #89242B;
 }
 
 .image {

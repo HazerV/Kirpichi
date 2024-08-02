@@ -6,6 +6,13 @@
     text-align: center;
     display: flex;
     align-items: center;
+    cursor: grab
+}
+.container:hover {
+    background-color: #89242B;
+    .text_inside {
+        color: white;
+    }
 }
 
 .locate_inside {
@@ -21,3 +28,4 @@
     color: black;
     margin-left: 5px;
 }
+

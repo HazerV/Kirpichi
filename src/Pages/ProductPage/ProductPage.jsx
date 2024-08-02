@@ -38,13 +38,9 @@ function ProductPage() {
                 <HeaderProduct category_name={product.name}/>
             </div>
             <div className={styles.slider}>
-                {product.images.map((image, index) => (
                     <ProductSlider
-                        key={index}
-                        photo={image.photo}
-                        photo2x={image.photo2x}
+                        items={product.images}
                     />
-                ))}
             </div>
             <div className={styles.container}>
                 <PriceField price={product.price || ''}/>

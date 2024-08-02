@@ -1,0 +1,41 @@
+.container {
+  flex-direction: column;
+  justify-content: center;
+  //align-items: center;
+  display: flex;
+  width: 180px;
+  gap: 8px
+}
+
+.container_block {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+  padding-bottom: 12px;
+}
+
+.image {
+  background-color: #ebe7e3;
+  width: 180px;
+  height: 180px;
+  border-style: solid;
+  border-radius: 3px;
+  border-color: #EBE7E3;
+  border-width: 2px;
+}
+
+.name {
+  font-size: 16px;
+  font-family: 'Gilroy-Medium';
+  padding-top: 6px;
+  color: black;
+}
+
+.description {
+  //font-family: Gilroy;
+  font-size: 12px;
+  line-height: 14px;
+  padding-top: 8px;
+  color: black;
+}

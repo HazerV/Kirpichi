@@ -18,7 +18,7 @@ function SearchButton() {
     return (
         <button className={styles.container}>
             <div className={styles.locate_inside}>
-                <img src={Lupa}/>
+                <img src={Lupa} className={styles.text_inside}/>
                 <p className={styles.text_inside}>
                     Поиск
                 </p>

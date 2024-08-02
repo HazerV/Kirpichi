@@ -1,47 +1,50 @@
+import React from 'react';
+import { useFilterSave } from "../../Context/FilterSave.jsx";
 import styles from './filter_modal.module.scss';
 import HeaderForFilter from "../../HeaderComponents/HeaderForFilter/HeaderForFilter.jsx";
 import PriceFilter from "../../BlockComponents/Filter/PriceFilter/PriceFilter.jsx";
-import CharactersFilter from "../../BlockComponents/Filter/CharactersFilter/CharactersFilter.jsx";
 import SaveFilterButton from "../../ButtonComponents/FilterButtons/SaveFilterButton/SaveFilterButton.jsx";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
+import CharactersFilter from "../../BlockComponents/Filter/CharactersFilter/CharactersFilter.jsx";
 
-function FilterModal({ data, onPriceChange, onAttributeChange, selectedAttributes }) {
-
+function FilterModal({ data, onPriceChange }) {
     const location = useLocation();
     const navigate = useNavigate();
     const { categorySlug } = useParams();
-    console.log(selectedAttributes);
+    const { selectedAttributes, toggleAttribute } = useFilterSave();
 
-    const handleSaveFilters = () => {
-        const params = new URLSearchParams(location.search);
+    const getQueryString = () => {
+        const params = new URLSearchParams();
         params.set('page', 1);
         if (data.min_price !== null) params.set('min_price', data.min_price);
         if (data.max_price !== null) params.set('max_price', data.max_price);
         Object.entries(selectedAttributes).forEach(([name, value]) => {
-            if (value !== null) params.set(name, value);
+            if (value !== null && value !== undefined) params.set(name, value);
         });
-        navigate(`/categories/${categorySlug}?${params.toString()}`);
+
+        return params.toString();
+    };
+
+    const handleSaveFilters = () => {
+        const queryString = getQueryString();
+        navigate(`/categories/${categorySlug}?${queryString}`);
     };
 
     const handlePriceChange = (newPriceRange) => {
         onPriceChange(newPriceRange);
-        updateURL(newPriceRange[0], newPriceRange[1], selectedAttributes);
+        updateURL(newPriceRange[0], newPriceRange[1]);
     };
 
-    const handleAttributeChange = (attributeName, attributeValue) => {
-        onAttributeChange(attributeName, attributeValue);
-        updateURL(null, null, { ...selectedAttributes, [attributeName]: attributeValue });
-    };
-
-    const updateURL = (newMinPrice, newMaxPrice, newSelectedAttributes) => {
-        const params = new URLSearchParams(location.search);
+    const updateURL = (newMinPrice, newMaxPrice) => {const params = new URLSearchParams(location.search);
         params.set('page', 1);
         if (newMinPrice !== null) params.set('min_price', newMinPrice);
         if (newMaxPrice !== null) params.set('max_price', newMaxPrice);
         Object.entries(newSelectedAttributes).forEach(([name, value]) => {
             if (value) params.set(name, value);
         });
-        navigate(`/categories/${categorySlug}?${params.toString()}`);
+
+        const queryString = getQueryString();
+        navigate(`/categories/${categorySlug}?${queryString}?${params.toString()}`);
     };
 
     return (
@@ -60,7 +63,7 @@ function FilterModal({ data, onPriceChange, onAttributeChange, selectedAttribute
                             text={attributeName}
                             values={attributeValues}
                             selectedValue={selectedAttributes[attributeName]}
-                            onAttributeChange={(value) => handleAttributeChange(attributeName, value)}
+                            onAttributeChange={(value) => toggleAttribute(attributeName, value)}
                         />
                     ))
                 }
