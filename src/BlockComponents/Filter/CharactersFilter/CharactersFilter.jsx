@@ -18,30 +18,40 @@ function CharactersFilter({ text, values, selectedValues, onAttributeChange }) {
             onAttributeChange([...selectedValues, value]);
         }
     }
-
+    if (open) {
+        return (
+            <div className={styles.options_container}>
+                <div className={styles.head_align} onClick={handleClick}>
+                    <p className={styles.head_text}>
+                        {text}
+                    </p>
+                    <img src={open ? UpSvg : DownSvg} alt="Arrow"/>
+                </div>
+                {Object.entries(values).map(([value, count]) => (
+                    <div
+                        key={value}
+                        className={styles.align}
+                        onClick={() => handleValueClick(value)}
+                    >
+                        <StatusIndicator checked={selectedValues.includes(value)}/>
+                        <p className={styles.text}>{value}</p>
+                        <div>
+                            <p>{count}</p>
+                        </div>
+                    </div>
+                ))}
+            </div>
+        )
+    }
     return (
         <div className={styles.container}>
             <div onClick={handleClick} className={styles.head_align}>
-                <p className={styles.head_text}>{text}</p>
-                <img src={open ? UpSvg : DownSvg} alt="Arrow" />
+                <p className={styles.head_text}>
+                    {text}
+                </p>
+                <img src={open ? UpSvg : DownSvg} alt="Arrow"/>
             </div>
-            {open && (
-                <div className={styles.options}>
-                    {Object.entries(values).map(([value, count]) => (
-                        <div
-                            key={value}
-                            className={styles.align}
-                            onClick={() => handleValueClick(value)}
-                        >
-                            <StatusIndicator checked={selectedValues.includes(value)} />
-                            <p className={styles.text}>{value}</p>
-                            <div>
-                                <p>{count}</p>
-                            </div>
-                        </div>
-                    ))}
-                </div>
-            )}
+
         </div>
     );
 }

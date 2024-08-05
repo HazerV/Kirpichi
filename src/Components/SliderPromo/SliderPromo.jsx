@@ -4,15 +4,18 @@ import ImageBig from '../../assets/imgs/SliderBan.png'
 import Carousel from "react-multi-carousel";
 import {useEffect, useState} from "react";
 import {getBanners} from "../../services/banners/index.js";
+import {Skeleton} from 'primereact/skeleton'
 
 function SliderPromo() {
 
     const [bannerData, setBannerData] = useState([]);
+    const [loading, setLoading] = useState(true)
 
     useEffect(() => {
         getBanners().then((res) => {
             let data = res.data.banners;
             setBannerData(data);
+            setLoading(false)
         });
     }, []);
 
@@ -22,7 +25,13 @@ function SliderPromo() {
             items: 1,
         }
     };
-
+    if (loading) {
+        return (
+            <div className={styles.carouselWrapper}>
+                <Skeleton className={styles.skeleton} width='960px' height='400px' />
+            </div>
+        )
+    }
     return (
         <div className={styles.promo}>
             <div className={styles.image_block}>
