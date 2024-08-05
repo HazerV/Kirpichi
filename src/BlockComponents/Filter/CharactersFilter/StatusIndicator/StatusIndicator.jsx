@@ -1,10 +1,12 @@
 import styles from './status_indicator.module.scss';
 
-function StatusIndicator({ checked, onChange }) {
+function StatusIndicator({checked}) {
 
     return (
-        <div onClick={onChange} className={checked ? styles.container_active : styles.container_non_active}>
-            {checked && <div className={styles.inside} />}
+        <div className={checked ? styles.container_active : styles.container_non_active}>
+            {
+                checked && <div className={styles.inside}/>
+            }
         </div>
     );
 }

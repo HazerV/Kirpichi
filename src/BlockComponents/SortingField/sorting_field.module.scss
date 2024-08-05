@@ -1,7 +1,6 @@
 .container {
   display: grid;
   width: 288px;
-  //align-items: center;
   justify-content: center;
   background-color: #EBE7E3;
   border-radius: 3px;
@@ -12,7 +11,13 @@
 
 .text_non_active {
   font-size: 16px;
+  text-align: center;
   font-family: Gilroy-SemiBold;
+}
+
+.text_non_active:hover {
+  color: #89242B;
+  cursor: grab;
 }
 
 .text_active {

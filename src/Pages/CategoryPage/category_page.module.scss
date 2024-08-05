@@ -11,6 +11,7 @@
   padding-bottom: 12px;
 }
 
+
 .item {
   width: 200px;
   height: 300px;
@@ -27,4 +28,10 @@
 
 .pad_bot16 {
   padding-bottom: 16px;
+}
+
+.modal {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

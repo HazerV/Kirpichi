@@ -9,6 +9,9 @@
   padding-bottom: 23px;
   gap: 13px;
 }
+.container:hover {
+  cursor: grab;
+}
 
 .options {
   display: flex;
@@ -41,6 +44,9 @@
 .text {
   font-family: Gilroy-Regular;
   font-size: 14px;
+}
+.text:hover {
+  color: #89242B;
 }
 
 .button_container {

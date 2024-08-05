@@ -1,74 +1,64 @@
-import React from 'react';
-import { useFilterSave } from "../../Context/FilterSave.jsx";
+import React, {useState, useEffect, useCallback} from 'react';
 import styles from './filter_modal.module.scss';
 import HeaderForFilter from "../../HeaderComponents/HeaderForFilter/HeaderForFilter.jsx";
 import PriceFilter from "../../BlockComponents/Filter/PriceFilter/PriceFilter.jsx";
 import SaveFilterButton from "../../ButtonComponents/FilterButtons/SaveFilterButton/SaveFilterButton.jsx";
-import { useLocation, useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import CharactersFilter from "../../BlockComponents/Filter/CharactersFilter/CharactersFilter.jsx";
+import { FilterContext } from "../../Context/ModalContext.jsx";
 
-function FilterModal({ data, onPriceChange }) {
-    const location = useLocation();
+function FilterModal({ data, selectedAttributes, toggleAttribute }) {
     const navigate = useNavigate();
     const { categorySlug } = useParams();
-    const { selectedAttributes, toggleAttribute } = useFilterSave();
+    const [minPrice, setMinPrice] = useState(data.min_price);
+    const [maxPrice, setMaxPrice] = useState(data.max_price);
 
-    const getQueryString = () => {
+    const updateURL = useCallback(() => {
         const params = new URLSearchParams();
         params.set('page', 1);
-        if (data.min_price !== null) params.set('min_price', data.min_price);
-        if (data.max_price !== null) params.set('max_price', data.max_price);
-        Object.entries(selectedAttributes).forEach(([name, value]) => {
-            if (value !== null && value !== undefined) params.set(name, value);
+        if (minPrice !== null) params.set('min_price', minPrice);
+        if (maxPrice !== null) params.set('max_price', maxPrice);
+        Object.entries(selectedAttributes).forEach(([name, values]) => {
+            if (values.length > 0) {
+                params.set(name, values.join(','));
+            }
         });
 
-        return params.toString();
-    };
+        navigate(`/categories/${categorySlug}?${params.toString()}`);
+    }, [navigate, categorySlug, minPrice, maxPrice, selectedAttributes]);
 
-    const handleSaveFilters = () => {
-        const queryString = getQueryString();
-        navigate(`/categories/${categorySlug}?${queryString}`);
-    };
+    useEffect(() => {
+        updateURL();
+    }, [updateURL]);
 
     const handlePriceChange = (newPriceRange) => {
-        onPriceChange(newPriceRange);
-        updateURL(newPriceRange[0], newPriceRange[1]);
+        setMinPrice(newPriceRange[0]);
+        setMaxPrice(newPriceRange[1]);
     };
 
-    const updateURL = (newMinPrice, newMaxPrice) => {const params = new URLSearchParams(location.search);
-        params.set('page', 1);
-        if (newMinPrice !== null) params.set('min_price', newMinPrice);
-        if (newMaxPrice !== null) params.set('max_price', newMaxPrice);
-        Object.entries(newSelectedAttributes).forEach(([name, value]) => {
-            if (value) params.set(name, value);
-        });
-
-        const queryString = getQueryString();
-        navigate(`/categories/${categorySlug}?${queryString}?${params.toString()}`);
+    const handleAttributeChange = (attributeName, newValues) => {
+        toggleAttribute(attributeName, newValues);
     };
-
     return (
         <div className={styles.container}>
             <HeaderForFilter />
             <div className={styles.filters}>
                 <PriceFilter
-                    minPrice={data.min_price}
-                    maxPrice={data.max_price}
+                    minPrice={minPrice}
+                    maxPrice={maxPrice}
                     onPriceChange={handlePriceChange}
                 />
-                {
-                    Object.entries(data.aggregated_attributes).map(([attributeName, attributeValues]) => (
-                        <CharactersFilter
-                            key={attributeName}
-                            text={attributeName}
-                            values={attributeValues}
-                            selectedValue={selectedAttributes[attributeName]}
-                            onAttributeChange={(value) => toggleAttribute(attributeName, value)}
-                        />
-                    ))
-                }
+                {Object.entries(data.aggregated_attributes).map(([attributeName, attributeValues]) => (
+                    <CharactersFilter
+                        key={attributeName}
+                        text={attributeName}
+                        values={attributeValues}
+                        selectedValues={selectedAttributes[attributeName] || []}
+                        onAttributeChange={(newValues) => handleAttributeChange(attributeName, newValues)}
+                    />
+                ))}
             </div>
-            <SaveFilterButton onSave={handleSaveFilters} />
+            <SaveFilterButton />
         </div>
     );
 }

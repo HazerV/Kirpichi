@@ -47,6 +47,8 @@ export function useCategoryPage() {
             setMinPrice(response.data.res.min_price);
             setMaxPrice(response.data.res.max_price);
             setLoading(false);
+            console.log(response.data.res)
+
         } catch (error) {
             console.error('Ошибка получения продуктов', error);
             setLoading(false);
@@ -61,20 +63,27 @@ export function useCategoryPage() {
     const requestParams = useMemo(() => {
         const searchParams = new URLSearchParams(location.search);
         const offset = (currentPage - 1) * itemsPerPage;
+        const attributes = {};
+
+        for (const [key, value] of searchParams.entries()) {
+            if (key !== 'page' && key !== 'min_price' && key !== 'max_price' && key !== 'sort_by') {
+                attributes[key] = value.split(',');
+            }
+        }
+
         return {
             categories_id: categoryId ? [categoryId] : [],
             limit: itemsPerPage,
             offset: offset,
-            min_price: searchParams.get('min_price'),
-            max_price: searchParams.get('max_price'),
+            min_price: searchParams.get('min_price') || null,
+            max_price: searchParams.get('max_price') || null,
             sort_by: sortBy ? [sortBy] : [],
             attributes: {
-                ...selectedAttributes,
+                ...attributes,
                 category_id: categoryId ? [categoryId] : []
             },
         };
-    }, [categoryId, currentPage, itemsPerPage, location.search, sortBy, selectedAttributes]);
-
+    }, [categoryId, currentPage, itemsPerPage, location.search, sortBy]);
     useEffect(() => {
         if (categoryId) {
             debouncedFetchProducts(requestParams);
@@ -108,34 +117,47 @@ export function useCategoryPage() {
         setSortBy(newSortBy);
     }, [location.search, navigate, categorySlug, setSortBy]);
 
-    const handlePriceChange = useCallback((newPriceRange) => {
+    const handlePriceChange = (newPriceRange) => {
         const [newMinPrice, newMaxPrice] = newPriceRange;
         const params = new URLSearchParams(location.search);
         params.set('page', 1);
         if (newMinPrice) params.set('min_price', newMinPrice);
         if (newMaxPrice) params.set('max_price', newMaxPrice);
         navigate(`/categories/${categorySlug}?${params.toString()}`);
-    }, [location.search, navigate, categorySlug]);
-
+    };
     const handleAttributeChange = useCallback((attributeName, attributeValue) => {
-        const newSelectedAttributes = {
-            ...selectedAttributes,
-            [attributeName]: attributeValue,
-        };
-        setSelectedAttributes(newSelectedAttributes);
+        setSelectedAttributes(prevAttributes => {
+            const newAttributes = { ...prevAttributes };
+            if (attributeValue) {
+                if (!newAttributes[attributeName]) {
+                    newAttributes[attributeName] = [];
+                }
+                if (!newAttributes[attributeName].includes(attributeValue)) {
+                    newAttributes[attributeName] = [...newAttributes[attributeName], attributeValue];
+                } else {
+                    newAttributes[attributeName] = newAttributes[attributeName].filter(v => v !== attributeValue);
+                }
+                if (newAttributes[attributeName].length === 0) {
+                    delete newAttributes[attributeName];
+                }
+            } else {
+                delete newAttributes[attributeName];
+            }
+            return newAttributes;
+        });
 
         const params = new URLSearchParams(location.search);
         params.set('page', 1);
-        Object.entries(newSelectedAttributes).forEach(([name, value]) => {
-            if (value) {
-                params.set(name, value);
-            } else {
-                params.delete(name);
-            }
-        });
+        if (selectedAttributes[attributeName] && selectedAttributes[attributeName].length > 0) {
+            params.set(attributeName, selectedAttributes[attributeName].join(','));
+        } else {
+            params.delete(attributeName);
+        }
 
         navigate(`/categories/${categorySlug}?${params.toString()}`);
-    }, [selectedAttributes, location.search, navigate, categorySlug]);
+    }, [location.search, navigate, categorySlug, selectedAttributes]);
+
+
 
     return {
         productsCount,

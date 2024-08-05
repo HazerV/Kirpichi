@@ -6,12 +6,17 @@ import styles from './footer.module.scss'
 function Footer () {
     return (
         <div className={styles.container}>
-            <img src={GeoSvg}/>
-            <Link to={'/contacts'}>
+            <Link className={styles.hover}>
+                <img src={GeoSvg}/>
+            </Link>
+            <Link className={styles.hover} to={'/contacts'}>
                 <img src={MenuSvg}/>
             </Link>
-            <img src={CartSvg}/>
+            <Link className={styles.hover}>
+                <img src={CartSvg}/>
+            </Link>
         </div>
     )
 }
+
 export default Footer

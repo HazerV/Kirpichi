@@ -1,5 +1,10 @@
 .text {
-  text-decoration-line: underline;
-  font-size: 12px;
+  text-decoration-line: none;
+  font-size: 14px;
   color: black;
+  :hover {
+    text-decoration-line: underline;
+  }
 }
+
+
