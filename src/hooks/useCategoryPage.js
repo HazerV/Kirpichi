@@ -157,8 +157,6 @@ export function useCategoryPage() {
         navigate(`/categories/${categorySlug}?${params.toString()}`);
     }, [location.search, navigate, categorySlug, selectedAttributes]);
 
-
-
     return {
         productsCount,
         loading,

@@ -24,6 +24,7 @@ function CategoryPage() {
         aggregatedAttributes,
         currentPage,
         itemsPerPage,
+        handleSortChange,
         handlePageChange,
         handlePriceChange,
         handleAttributeChange,
@@ -36,13 +37,11 @@ function CategoryPage() {
     useEffect(() => {
         const params = new URLSearchParams(location.search);
         const newSelectedAttributes = {};
-
         params.forEach((value, key) => {
             if (key !== 'page' && key !== 'min_price' && key !== 'max_price' && key !== 'sort_by') {
                 newSelectedAttributes[key] = value.split(',');
             }
         });
-
         setSelectedAttributes(newSelectedAttributes);
     }, [location.search]);
 
@@ -104,7 +103,11 @@ function CategoryPage() {
             navigate(newUrl, {replace: true});
         }
     }, [location.search, navigate, location.pathname]);
-
+    if (is_sorting_open) {
+        return (
+            <SortingModal onSortChange={handleSortChange} sortBy={sortBy}/>
+        );
+    }
 
     if (is_filter_open) {
         return (
@@ -138,7 +141,7 @@ function CategoryPage() {
                 }
             </div>
             {
-                totalProducts >= 30 && (
+                totalProducts > 30 && (
                     <div className={styles.pad_bot16}>
                         <PaginationButtons
                             currentPage={currentPage}
