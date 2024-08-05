@@ -13,6 +13,11 @@ function FilterModal({ data, selectedAttributes, toggleAttribute }) {
     const [minPrice, setMinPrice] = useState(data.min_price);
     const [maxPrice, setMaxPrice] = useState(data.max_price);
 
+    useEffect(() => {
+        setMinPrice(data.min_price);
+        setMaxPrice(data.max_price);
+    }, [data.min_price, data.max_price]);
+
     const updateURL = useCallback(() => {
         const params = new URLSearchParams();
         params.set('page', 1);
@@ -32,8 +37,9 @@ function FilterModal({ data, selectedAttributes, toggleAttribute }) {
     }, [updateURL]);
 
     const handlePriceChange = (newPriceRange) => {
-        setMinPrice(newPriceRange[0]);
-        setMaxPrice(newPriceRange[1]);
+        const [newMinPrice, newMaxPrice] = newPriceRange;
+        setMinPrice(newMinPrice);
+        setMaxPrice(newMaxPrice);
     };
 
     const handleAttributeChange = (attributeName, newValues) => {
@@ -58,7 +64,9 @@ function FilterModal({ data, selectedAttributes, toggleAttribute }) {
                     />
                 ))}
             </div>
-            <SaveFilterButton />
+            <div className={styles.save_button}>
+                <SaveFilterButton />
+            </div>
         </div>
     );
 }

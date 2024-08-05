@@ -1,4 +1,4 @@
-import {useState} from "react";
+import {useState, useEffect} from "react";
 
 import styles from './price_filter.module.scss'
 import UpSvg from '../../../assets/icons/Up.svg'
@@ -6,21 +6,29 @@ import DownSvg from '../../../assets/icons/Down.svg'
 
 function PriceFilter ({ minPrice, maxPrice, onPriceChange }) {
 
-    const [open, setOpen] = useState(false)
-    const [minPriceInput, setMinPriceInput] = useState(minPrice)
-    const [maxPriceInput, setMaxPriceInput] = useState(maxPrice)
-    function handleClick () {
-        setOpen(!open)
+    const [open, setOpen] = useState(false);
+    const [minPriceInput, setMinPriceInput] = useState(minPrice);
+    const [maxPriceInput, setMaxPriceInput] = useState(maxPrice);
+
+    useEffect(() => {
+        setMinPriceInput(minPrice);
+        setMaxPriceInput(maxPrice);
+    }, [minPrice, maxPrice]);
+
+    function handleClick() {
+        setOpen(!open);
     }
-    function handleMinPriceChange (event) {
-        const newMinPrice = parseInt(event.target.value, 10)
-        setMinPriceInput(newMinPrice)
-        onPriceChange([newMinPrice, maxPriceInput])
+
+    function handleMinPriceChange(event) {
+        const newMinPrice = parseInt(event.target.value, 10);
+        setMinPriceInput(newMinPrice);
+        onPriceChange([newMinPrice, maxPriceInput]);
     }
-    function handleMaxPriceChange (event) {
-        const newMaxPrice = parseInt(event.target.value, 10)
-        setMaxPriceInput(newMaxPrice)
-        onPriceChange([minPriceInput, newMaxPrice])
+
+    function handleMaxPriceChange(event) {
+        const newMaxPrice = parseInt(event.target.value, 10);
+        setMaxPriceInput(newMaxPrice);
+        onPriceChange([minPriceInput, newMaxPrice]);
     }
 
     if (!open) {
