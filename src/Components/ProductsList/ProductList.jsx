@@ -1,14 +1,17 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import ItemComponents from "../../BlockComponents/ItemComponent/ItemComponents.jsx";
+import {Skeleton} from "primereact/skeleton";
+import styles from './product_list.module.scss'
 
 function ProductList({products}) {
+
     return (
-        <>
+        <div className={styles.container}>
             {
                 products.map((product, index) => (
                     <ItemComponents
                         {...product}
-                        image={product.images.photo}
+                        photo={product.images.photo}
                         photo2x={product.images.photo2x}
                         description={product.model}
                         surface={product.template}
@@ -21,7 +24,7 @@ function ProductList({products}) {
                     />
                 ))
             }
-        </>
+        </div>
     );
 }
 

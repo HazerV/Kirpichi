@@ -1,11 +1,9 @@
-import {useState, useEffect} from "react";
+import { useState, useEffect } from "react";
+import styles from './price_filter.module.scss';
+import UpSvg from '../../../assets/icons/Up.svg';
+import DownSvg from '../../../assets/icons/Down.svg';
 
-import styles from './price_filter.module.scss'
-import UpSvg from '../../../assets/icons/Up.svg'
-import DownSvg from '../../../assets/icons/Down.svg'
-
-function PriceFilter ({ minPrice, maxPrice, onPriceChange }) {
-
+function PriceFilter({ minPrice, maxPrice, onPriceChange }) {
     const [open, setOpen] = useState(false);
     const [minPriceInput, setMinPriceInput] = useState(minPrice);
     const [maxPriceInput, setMaxPriceInput] = useState(maxPrice);
@@ -22,13 +20,17 @@ function PriceFilter ({ minPrice, maxPrice, onPriceChange }) {
     function handleMinPriceChange(event) {
         const newMinPrice = parseInt(event.target.value, 10);
         setMinPriceInput(newMinPrice);
-        onPriceChange([newMinPrice, maxPriceInput]);
+        if (newMinPrice !== minPrice) {
+            onPriceChange([newMinPrice, maxPriceInput]);
+        }
     }
 
     function handleMaxPriceChange(event) {
         const newMaxPrice = parseInt(event.target.value, 10);
         setMaxPriceInput(newMaxPrice);
-        onPriceChange([minPriceInput, newMaxPrice]);
+        if (newMaxPrice !== maxPrice) {
+            onPriceChange([minPriceInput, newMaxPrice]);
+        }
     }
 
     if (!open) {
@@ -37,9 +39,9 @@ function PriceFilter ({ minPrice, maxPrice, onPriceChange }) {
                 <p className={styles.head_text}>
                     Цена
                 </p>
-                <img src={DownSvg} alt="Arrow Image"/>
+                <img src={DownSvg} alt="Arrow Image" />
             </div>
-        )
+        );
     } else {
         return (
             <div className={styles.container}>
@@ -47,9 +49,9 @@ function PriceFilter ({ minPrice, maxPrice, onPriceChange }) {
                     <p className={styles.head_text}>
                         Цена
                     </p>
-                    <img src={UpSvg}/>
+                    <img src={UpSvg} />
                 </div>
-                <div>
+                <div className={styles.input_field}>
                     <p className={styles.text}>
                         Цена от
                     </p>
@@ -60,7 +62,7 @@ function PriceFilter ({ minPrice, maxPrice, onPriceChange }) {
                         onChange={handleMinPriceChange}
                     />
                 </div>
-                <div>
+                <div className={styles.input_field}>
                     <p className={styles.text}>
                         Цена до
                     </p>
@@ -72,8 +74,8 @@ function PriceFilter ({ minPrice, maxPrice, onPriceChange }) {
                     />
                 </div>
             </div>
-        )
+        );
     }
 }
 
-export default PriceFilter
+export default PriceFilter;

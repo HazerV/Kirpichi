@@ -1,8 +1,15 @@
 .container {
-  padding-left: 10px;
-  display: flex;
+  padding-top: 16px;
+  width: 400px;
+  background-color: white;
   flex-direction: column;
-  justify-content: center;
+  //justify-content: center;
+  overflow-y: auto;
+  //scrollbar-color: 1red;
+  scrollbar-width: thin;
+  scrollbar-color: #d3bcbe #ebe7e3 ;
+  max-height: 850px;
+  display: grid;
   gap: 16px;
 }
 
@@ -11,10 +18,18 @@
   flex-direction: column;
   align-self: center;
   gap: 12px;
-  padding-bottom: 31px;
+  padding-bottom: 16px;
 }
 
 .save_button {
-  align-self: center;
-  padding-bottom: 16px
+  display: flex;
+  padding-bottom: 16px;
+  justify-content: center;
+}
+
+.total_products {
+  justify-content: center;
+  display: flex;
+  padding-bottom: 16px;
+  padding-top: 16px
 }

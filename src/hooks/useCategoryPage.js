@@ -47,8 +47,6 @@ export function useCategoryPage() {
             setMinPrice(response.data.res.min_price);
             setMaxPrice(response.data.res.max_price);
             setLoading(false);
-            console.log(response.data.res)
-
         } catch (error) {
             console.error('Ошибка получения продуктов', error);
             setLoading(false);
@@ -84,6 +82,7 @@ export function useCategoryPage() {
             },
         };
     }, [categoryId, currentPage, itemsPerPage, location.search, sortBy]);
+
     useEffect(() => {
         if (categoryId) {
             debouncedFetchProducts(requestParams);
@@ -108,7 +107,6 @@ export function useCategoryPage() {
         params.set('page', pageNumber);
         navigate(`/categories/${categorySlug}?${params.toString()}`);
     }, [location.search, navigate, categorySlug]);
-
     const handleSortChange = useCallback((newSortBy) => {
         const params = new URLSearchParams(location.search);
         params.set('page', 1);
@@ -117,42 +115,57 @@ export function useCategoryPage() {
         setSortBy(newSortBy);
     }, [location.search, navigate, categorySlug, setSortBy]);
 
-    const handlePriceChange = (newPriceRange) => {
+    const handlePriceChange = useCallback((newPriceRange) => {
         const [newMinPrice, newMaxPrice] = newPriceRange;
         const params = new URLSearchParams(location.search);
         params.set('page', 1);
-        if (newMinPrice) params.set('min_price', newMinPrice);
-        if (newMaxPrice) params.set('max_price', newMaxPrice);
+
+        if (newMinPrice !== minPrice) {
+            params.set('min_price', newMinPrice);
+        } else {
+            params.delete('min_price');
+        }
+
+        if (newMaxPrice !== maxPrice) {
+            params.set('max_price', newMaxPrice);
+        } else {
+            params.delete('max_price');
+        }
+
         navigate(`/categories/${categorySlug}?${params.toString()}`);
-    };
+    }, [location.search, navigate, categorySlug, minPrice, maxPrice]);
+
     const handleAttributeChange = useCallback((attributeName, attributeValue) => {
-        setSelectedAttributes(prevAttributes => {
-            const newAttributes = { ...prevAttributes };
-            if (attributeValue) {
-                if (!newAttributes[attributeName]) {
-                    newAttributes[attributeName] = [];
-                }
-                if (!newAttributes[attributeName].includes(attributeValue)) {
-                    newAttributes[attributeName] = [...newAttributes[attributeName], attributeValue];
-                } else {
-                    newAttributes[attributeName] = newAttributes[attributeName].filter(v => v !== attributeValue);
-                }
-                if (newAttributes[attributeName].length === 0) {
-                    delete newAttributes[attributeName];
-                }
-            } else {
-                delete newAttributes[attributeName];
+        const newSelectedAttributes = { ...selectedAttributes };
+
+        if (attributeValue) {
+            if (!newSelectedAttributes[attributeName]) {
+                newSelectedAttributes[attributeName] = [];
             }
-            return newAttributes;
-        });
+            if (!newSelectedAttributes[attributeName].includes(attributeValue)) {
+                newSelectedAttributes[attributeName] = [...newSelectedAttributes[attributeName], attributeValue];
+            } else {
+                newSelectedAttributes[attributeName] = newSelectedAttributes[attributeName].filter(v => v !== attributeValue);
+            }
+            if (newSelectedAttributes[attributeName].length === 0) {
+                delete newSelectedAttributes[attributeName];
+            }
+        } else {
+            delete newSelectedAttributes[attributeName];
+        }
+
+        setSelectedAttributes(newSelectedAttributes);
 
         const params = new URLSearchParams(location.search);
         params.set('page', 1);
-        if (selectedAttributes[attributeName] && selectedAttributes[attributeName].length > 0) {
-            params.set(attributeName, selectedAttributes[attributeName].join(','));
-        } else {
-            params.delete(attributeName);
-        }
+
+        Object.keys(newSelectedAttributes).forEach(key => {
+            if (newSelectedAttributes[key].length > 0) {
+                params.set(key, newSelectedAttributes[key].join(','));
+            } else {
+                params.delete(key);
+            }
+        });
 
         navigate(`/categories/${categorySlug}?${params.toString()}`);
     }, [location.search, navigate, categorySlug, selectedAttributes]);

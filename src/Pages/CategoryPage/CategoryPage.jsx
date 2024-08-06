@@ -29,6 +29,7 @@ function CategoryPage() {
         handlePriceChange,
         handleAttributeChange,
     } = useCategoryPage();
+
     const {categoryTitle} = useLocation().state || {};
     const totalPages = Math.ceil(totalProducts / itemsPerPage);
     const [selectedAttributes, setSelectedAttributes] = useState({});
@@ -65,7 +66,7 @@ function CategoryPage() {
         if (params.get('page') === '1') {
             params.delete('page');
         }
-//update filter params
+        //update filter params
         Object.entries(selectedAttributes).forEach(([name, values]) => {
             if (values && values.length > 0) {
                 params.set(name, values.join(','));
@@ -103,27 +104,7 @@ function CategoryPage() {
             navigate(newUrl, {replace: true});
         }
     }, [location.search, navigate, location.pathname]);
-    if (is_sorting_open) {
-        return (
-            <SortingModal onSortChange={handleSortChange} sortBy={sortBy}/>
-        );
-    }
 
-    if (is_filter_open) {
-        return (
-            <FilterModal
-                toggleAttribute={toggleAttribute}
-                selectedAttributes={selectedAttributes}
-                data={{
-                    min_price: minPrice,
-                    max_price: maxPrice,
-                    aggregated_attributes: aggregatedAttributes,
-                }}
-                onPriceChange={handlePriceChange}
-                onAttributeChange={handleAttributeChange}
-            />
-        );
-    }
 
     return (
         <>
@@ -137,6 +118,27 @@ function CategoryPage() {
                         <SkeletonItemsBlock/>
                     ) : (
                         <ProductList products={products}/>
+                    )
+                }
+                {
+                    is_filter_open && (
+                        <FilterModal
+                            toggleAttribute={toggleAttribute}
+                            selectedAttributes={selectedAttributes}
+                            data={{
+                                totalProducts: totalProducts,
+                                min_price: minPrice,
+                                max_price: maxPrice,
+                                aggregated_attributes: aggregatedAttributes,
+                            }}
+                            onPriceChange={handlePriceChange}
+                            onAttributeChange={handleAttributeChange}
+                        />
+                    )
+                }
+                {
+                    is_sorting_open && (
+                        <SortingModal onSortChange={handleSortChange} sortBy={sortBy}/>
                     )
                 }
             </div>

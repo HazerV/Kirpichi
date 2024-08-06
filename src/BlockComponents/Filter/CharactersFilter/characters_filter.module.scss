@@ -1,41 +1,59 @@
 .container {
+  padding: 12px 22px 11px 17px;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  background-color: #EBE7E3;
+  align-items: flex-start;
+  align-self: center;
+  gap: 12px;
   border-radius: 5px;
-  gap: 13px;
-}
-.container:hover {
-  cursor: grab;
+  background: #ebe7e3;
+  :hover {
+    cursor: grab;
+  }
 }
 
 .options_container {
-  border-radius: 5px;
-  background-color: #EBE7E3;
-  width: 300px;
   display: flex;
   flex-direction: column;
+  align-items: flex-start;
+  align-self: center;
+  gap: 12px;
+  border-radius: 5px;
+  background: #ebe7e3;
+}
+
+.scroller {
+  max-height: 400px;
+  overflow-y: scroll;
+  scrollbar-width: thin;
   gap: 8px;
-  padding-bottom: 12px
+  display: flex;
+  flex-direction: column;
 }
 
 .head_align {
   display: flex;
   align-items: center;
   justify-content: center;
+  align-self: center;
+  gap: 8px
 }
 
 .head_text {
-  padding: 14px 20px;
   font-size: 14px;
   font-family: Gilroy-SemiBold;
 }
 
+.count_field {
+  background-color: white;
+  padding: 1px;
+  border-radius: 2px
+}
+
 .align {
+  max-width: 25vh;
   padding-left: 23px;
   display: flex;
-  //justify-content: center;
   align-items: center;
   gap: 8px;
 }
@@ -44,8 +62,10 @@
   font-family: Gilroy-Regular;
   font-size: 14px;
 }
+
 .text:hover {
   color: #89242B;
+  cursor: grab;
 }
 
 .button_container {
@@ -58,5 +78,4 @@
   width: 120px;
   height: 40px;
   border-radius: 3px;
-  //padding: 10px
 }

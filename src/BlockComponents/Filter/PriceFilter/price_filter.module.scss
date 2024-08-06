@@ -1,7 +1,7 @@
 .container {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-self: center;
   justify-content: center;
   width: 286px;
   height: 212px;
@@ -11,11 +11,20 @@
   border-width: 0;
 }
 
+
 .head_text_block {
   flex-direction: row;
   display: flex;
+  align-self: center;
   align-items: center;
-  gap: 8px
+  gap: 5px;
+  :hover {
+    cursor: grab;
+  }
+}
+
+.input_field {
+  align-self: center;
 }
 
 .head_text {
@@ -52,4 +61,7 @@
   width: 100px;
   height: 40px;
   border-radius: 3px;
+  :hover {
+    cursor: grab;
+  }
 }

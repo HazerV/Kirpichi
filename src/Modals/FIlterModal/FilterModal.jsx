@@ -1,4 +1,4 @@
-import React, {useState, useEffect, useCallback} from 'react';
+import React, { useState, useEffect, useCallback, useContext } from 'react';
 import styles from './filter_modal.module.scss';
 import HeaderForFilter from "../../HeaderComponents/HeaderForFilter/HeaderForFilter.jsx";
 import PriceFilter from "../../BlockComponents/Filter/PriceFilter/PriceFilter.jsx";
@@ -6,13 +6,15 @@ import SaveFilterButton from "../../ButtonComponents/FilterButtons/SaveFilterBut
 import { useNavigate, useParams } from "react-router-dom";
 import CharactersFilter from "../../BlockComponents/Filter/CharactersFilter/CharactersFilter.jsx";
 import { FilterContext } from "../../Context/ModalContext.jsx";
+import { Dialog } from 'primereact/dialog';
+import { ScrollPanel } from 'primereact/scrollpanel';
 
 function FilterModal({ data, selectedAttributes, toggleAttribute }) {
     const navigate = useNavigate();
     const { categorySlug } = useParams();
     const [minPrice, setMinPrice] = useState(data.min_price);
     const [maxPrice, setMaxPrice] = useState(data.max_price);
-
+    const { is_filter_open } = useContext(FilterContext);
     useEffect(() => {
         setMinPrice(data.min_price);
         setMaxPrice(data.max_price);
@@ -45,8 +47,19 @@ function FilterModal({ data, selectedAttributes, toggleAttribute }) {
     const handleAttributeChange = (attributeName, newValues) => {
         toggleAttribute(attributeName, newValues);
     };
+
     return (
-        <div className={styles.container}>
+        <Dialog
+            modal={true}
+            position={'bottom'}
+            closable={false}
+            visible={is_filter_open}
+            className={styles.container}
+            onHide={() => {
+                setMinPrice(data.min_price);
+                setMaxPrice(data.max_price);
+            }}
+        >
             <HeaderForFilter />
             <div className={styles.filters}>
                 <PriceFilter
@@ -54,20 +67,25 @@ function FilterModal({ data, selectedAttributes, toggleAttribute }) {
                     maxPrice={maxPrice}
                     onPriceChange={handlePriceChange}
                 />
-                {Object.entries(data.aggregated_attributes).map(([attributeName, attributeValues]) => (
-                    <CharactersFilter
-                        key={attributeName}
-                        text={attributeName}
-                        values={attributeValues}
-                        selectedValues={selectedAttributes[attributeName] || []}
-                        onAttributeChange={(newValues) => handleAttributeChange(attributeName, newValues)}
-                    />
-                ))}
+                {
+                    Object.entries(data.aggregated_attributes).map(([attributeName, attributeValues]) => (
+                        <CharactersFilter
+                            key={attributeName}
+                            text={attributeName}
+                            values={attributeValues}
+                            selectedValues={selectedAttributes[attributeName] || []}
+                            onAttributeChange={(newValues) => handleAttributeChange(attributeName, newValues)}
+                        />
+                    ))
+                }
             </div>
             <div className={styles.save_button}>
                 <SaveFilterButton />
             </div>
-        </div>
+            <p className={styles.total_products}>
+                Кол-во товаров: {data.totalProducts}
+            </p>
+        </Dialog>
     );
 }
 

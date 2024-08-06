@@ -36,7 +36,6 @@ function CategoriesBlock() {
                             mesh.map((item, index) => {
                                     const categorySlug = item.link.split('/').pop();
                                     const categoryTitle = item.title;
-                                    console.log(item)
                                     return (
                                         <Link
                                             key={index}

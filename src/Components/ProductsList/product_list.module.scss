@@ -1,0 +1,19 @@
+.container {
+  display: grid;
+  gap: 16px;
+  //aspect-ratio: 1/2;
+  //grid-gap: 12px;
+  grid-template-columns: repeat(2, minmax(140px, 2fr));
+  @media screen and (min-width: 580px) {
+    grid-template-columns: repeat(3, minmax(180px, 1fr));
+  }
+  @media screen and (min-width: 780px) {
+    grid-template-columns: repeat(4, minmax(180px, 1fr));
+  }
+  @media screen and (min-width: 980px) {
+    grid-template-columns: repeat(5, minmax(180px, 1fr));
+  }
+  @media screen and (min-width: 1180px) {
+    grid-template-columns: repeat(6, minmax(180px, 1fr));
+  }
+}
